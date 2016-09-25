@@ -1,0 +1,261 @@
+        <!-- Welcome Slide -->
+        <section>
+            <h3>Linux Admin 1 - Week 14</h3>
+            <h4>Readings for this Week</h4>
+            <ul>
+              <li>Apache HTTPd Server</li>
+              <ul>
+                <li>Chapter 27 : Pages 951 - 1000</li>
+                <li><a href="https://en.wikipedia.org/wiki/Apache_HTTP_Server">https://en.wikipedia.org/wiki/Apache_HTTP_Server</a></li>
+                <li><a href="https://httpd.apache.org">httpd.apache.org</a></li>
+              </ul>
+              <li>Administration Tasks</li>
+              <ul>
+                <li>Chapter 14: Pages 563 - 594</li>
+              </ul>
+            </ul>
+        </section>
+
+        <!-- Title Slide -->
+				<section>
+  					<h3>HTC CCIS 1121-40</h3>
+  					<h3>Linux Admin 1</h3>
+  					<h3>Week 12</h3>
+  					<p>
+  						    <small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+  					</p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+                <li>Intro to Services: Apache HTTPd</li>
+                <li>upcoming weeks</li>
+                <li>lab 09</li>
+            </ul>
+        </section>
+
+        <!-- Intro Slide -->
+        <section>
+          <section>
+            <h3>Apache HTTPd</h3>
+            <ul>
+              <li>Overview</li>
+              <li>Installation</li>
+              <li>Configuration</li>
+              <li>Administration</li>
+              <li>Monitoring &amp; Logging</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Overview Slide -->
+        <section>
+          <section>
+            <h3>HTTPd Overview</h3>
+            <ul>
+              <li>The Web, a.k.a WWW(World Wide Web)</li>
+              <li>Serves content over HTTP(Hypertext Transfer Protocol)</li>
+              <li>Content could be HTML, Javascript, Images, or other content.</li>
+              <br />
+              <li>HTTPd = HTTP Daemon</li>
+              <li>Apache httpd is a very common HTTPd Server</li>
+              <li>Apache Software Foundation</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>HTML Asside. . .</h3>
+            <ul>
+              <li>HTML = Hyper Text Markup Language</li>
+              <br />
+              <li><a href="http://www.w3.org/">www.w3.org</a></li>
+              <li><a href="http://www.w3schools.com/">www.w3schools.com</a></li>
+              <br />
+              <li>HTML is useful to know as an administrator</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Installation Slide -->
+        <section>
+          <section>
+            <h3>HTTPd Installation</h3>
+            <ul>
+              <li>Install</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo apt-get update
+sudo apt-get install apache2 -y
+              </code></pre>
+              <li>Test</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# From a browser hit:
+http://localhost
+              </code></pre>
+              <li>Remove</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo apt-get remove apache2 -y
+sudo apt-get autoremove -y
+              </code></pre>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Configuration Slide -->
+        <section>
+          <section>
+            <h3>HTTPd Configuration</h3>
+            <ul>
+              <li>Main Configuration File</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+/etc/apache2/apache2.conf
+              </code></pre>
+              <li>ServerRoot</li>
+              <ul>
+                <li>Specifies the top of the directory tree where all configuration files are stored. default /etc/apache2</li>
+              </ul>
+              <li>DocumentRoot</li>
+              <ul>
+                <li>Specifies the root directory of the served content. default: /var/www</li>
+              </ul>
+              <li>ServerAdmin</li>
+              <ul>
+                <li>Specifies the e-mail address that the server sends mail to when a user clicks the link on an error page.</li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>HTTPd Configuration cont.</h3>
+            <ul>
+              <li>ServerName</li>
+              <ul>
+                <li>Specifies the server name.</li>
+              </ul>
+              <li>Lisen</li>
+              <ul>
+                <li>Specifies the port that the server listens on. default: 80</li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Create a HTML Document</h3>
+            <ul>
+              <li>As the Root user.</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+cd /var/www/html/
+              </code></pre>
+              <li>Create a file ccis1121.html</li>
+              <pre><code class="html" data-trim contenteditable style="font-size: 18px;">
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;HTC CCIS 1121-40&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;
+Apache2 works!
+    &lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+              </code></pre>
+              <li>Test</li>
+              <pre><code class="text" data-trim contenteditable style="font-size: 18px;">
+http://localhost/ccis1121.html
+              </code></pre>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Administration Slide -->
+        <section>
+          <section>
+            <h3>HTTPd Administration</h3>
+            <ul>
+              <li>enable/start</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo update-rc.d apache2 enable
+sudo service apache2 start
+              </code></pre>
+              <li>restart</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo service apache2 restart
+              </code></pre>
+              <li>stop/disable</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo service apache2 stop
+sudo update-rc.d apache2 disable
+              </code></pre>
+            </ul>
+          </section>
+
+          <section>
+            <h3>HTTPd Administration cont.</h3>
+            <ul>
+              <li>Modules</li>
+              <ul>
+                <li>Modules add functionality.</li>
+                <li>Enable Modules</li>
+                <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo a2enmod
+                </code></pre>
+                <li>Disable Modules</li>
+                <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo a2dismod
+                </code></pre>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Monitoring Slide -->
+        <section>
+          <section>
+            <h3>HTTPd Monitoring &amp; Logging</h3>
+            <ul>
+              <li>Monitoring</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo apt-get install lsof
+lsof -i -P
+
+ps auxww | grep apache2
+              </code></pre>
+              <li>Logging</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+/var/log/apache2
+/var/log/apache2/access.log
+/var/log/apache2/error.log
+              </code></pre>
+            </ul>
+          </section>
+        </section>
+
+        <!-- upcoming weeks -->
+        <section>
+          <section>
+            <h3>upcoming weeks</h3>
+            <ul>
+              <li>week 15</li>
+              <ul>
+                <li>Shell Scripting Pt. 1</li>
+              </ul>
+              <li>week 15</li>
+              <ul>
+                <li>Shell Scripting Pt. 2</li>
+              </ul>
+              <li>week 16</li>
+              <ul>
+                <li>System Security, System Integrity, and Encryption</li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- lab -->
+        <section>
+          <h3>The rest of the evening:</h3>
+          <ul>
+            <li>lab 09</li>
+          </ul>
+        </section>

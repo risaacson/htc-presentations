@@ -1,0 +1,423 @@
+                <section>
+                    <p>
+Tonight is the last observation.
+                    </p>
+                    <p>
+Lecture!
+                    </p>
+                </section>
+
+                <!-- Title Slide -->
+				<section>
+					<h3>HTC CCIS 1135-40</h3>
+					<h3>Desktop Linux</h3>
+					<h3>Week 13 of 19 - Intro to the CLI</h3>
+					<p>
+						<small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+					</p>
+				</section>
+
+                <!-- agenda Slide -->
+                <section>
+                    <h3>agenda</h3>
+                    <ul>
+                        <!-- Lecture content -->
+                        <li>Intro to the CLI</li>
+                        <!-- Upcoming content -->
+                        <li>What to expect in the next weeks?</li>
+                        <!-- The rest of the evening -->
+                        <li>Lab 11</li>
+                    </ul>
+                </section>
+
+                <!-- Lecture content slides -->
+                <section>
+                    <section>
+                        <h3>Intro to the CLI</h3>
+                    </section>
+
+                    <section>
+                        <h3>CLI</h3>
+                        <p>
+Command-Line Interface
+                        </p>
+                        <p>
+A text driven interface where you type (or cut-and-paste) in commands to be executed.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Tonight we will focus on:</h3>
+                        <ul>
+                            <li>Accessing the CLI</li>
+                            <li>The CLI and the shell</li>
+                            <li>Basic shell commands</li>
+                            <li>Basic editor usage</li>
+                        </ul>
+                        <p>
+We are not going to go too in depth as the Linux Admin classes should dive in deeper.
+                        </p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>Accessing the CLI</h3>
+                        <p>
+Look int your distribution's application menu for Terminal or Console
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>CLI(Terminals) to Distrubution</h3>
+                        <ul>
+                            <li>Ubuntu</li>
+                            <ul>
+                                <li>gnome-terminal -- Search for Terminal</li>
+                            </ul>
+                            <li>Kubuntu</li>
+                            <ul>
+                                <li>Konsole -- Menu -> Applications -> System -> Terminal</li>
+                            </ul>
+                            <li>Lubuntu</li>
+                            <ul>
+                                <li>LXTerminal -- Menu -> Accessories -> LXTerminal</li>
+                                <li>uxterm -- Menu -> System Tools -> UXTerm</li>
+                                <li>xterm -- Menu -> System Tools -> XTerm</li>
+                            </ul>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>The CLI and the Shell</h3>
+                        <p>
+When you open up a terminal program it opens up your default shell. It it through a shell that you are able to enter in your commands.
+                        </p>
+                        <p>
+You can view your availible shells via `cat /etc/shells`.
+                        </p>
+                        <p>
+Your default shell is set with your user information in /etc/passwd
+                        </p>
+                        <p>
+For now just be concerned that shells allow you to:
+                        </p>
+                        <ul>
+                            <li>execute commands against your system</li>
+                            <li>compose commands</li>
+                            <li>script logic</li>
+                            <li>set re-usable environmental variables</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <p>
+The shell you choose is a religious decision. When you make a choice it becomes a part of your identity.
+                        </p>
+                        <p>
+Which shell you prefer doesn't matter as they all provide the same basic features and the differences are syntax.
+                        </p>
+                        <br />
+                        <p>
+In computing the same can be said for editors, programming languages, operating systems, amongst other things.
+                        </p>
+                    </section>
+
+                    <section>
+                        <p>
+There are many shells that we can use. The most popular and typical default shell is BASH. We will be using BASH.
+                        </p>
+                        <p>
+Other examples of shells are:
+                        </p>
+                        <ul>
+                            <li>Bourne Shell - sh</li>
+                            <li>ksh</li>
+                            <li>csh</li>
+                            <li>zsh</li>
+                            <li>fish</li>
+                        </ul>
+                        <p>
+Performs similar functions to cmd.exe and PowerShell.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>BASH</h3>
+                        <p>
+BASH is the Bourne-again Shell which is a free rewrite of the Bourne Shell with additional features. The software is hosted by the GNU Foundation and it is available on just about every Unix or Linux distribution.
+                        </p>
+                        <p>
+It has command name, path, command argument(if configured), and wildcard completions. Also it will keep an easy to access command history. Also it has a great set of structures to make scripting powerful.
+                        </p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>Basic Shell Commands</h3>
+                        <ul>
+                            <li>If you have questions about a command:</li>
+                            <ul>
+                                <li>man COMMAND</li>
+                                <li>info COMMAND</li>
+                                <li>or google the command</li>
+                            </ul>
+                            <li>Your command history:</li>
+                            <ul>
+                                <li>history -- print your history</li>
+                                <li>history | grep STRING -- search your history</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>A Filesystem Aside</h3>
+                        <p>
+The Linux and Unix filesystems are interacted through a heierarcy. You have a root (/) directory and everything is nested in folders.
+                        </p>
+                        <p>
+The path is how you get from the root to something. You can also have a relative path.
+                        </p>
+                        <p>
+The PATH environment variable helps execute commands easily.
+                        </p>
+                        <p>
+Commands:
+                        </p>
+                        <ul>
+                            <li>pwd -- print your current directory</li>
+                            <li>echo "${PATH}" -- print the path environment variable.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Basic Shell Commands Cont. . :</h3>
+                        <ul>
+                            <li>Listing</li>
+                            <ul>
+                                <li>ls -- list the contents of the current directory</li>
+                                <li>ls PATH/FILE -- list the contents of the directory or file</li>
+                                <li>ls -l -- list in long format</li>
+                                <li>ls -a -- list all files (including hidden)</li>
+                                <li>ls -t -- list sorted order by modification time</li>
+                                <li>ls -r -- list in reversed order</li>
+                                <li>ls -latr -- list all files by what was recently modified</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Basic Shell Commands Cont. . :</h3>
+                        <ul>
+                            <li>Moving Around</li>
+                            <ul>
+                                <li>cd -- change (working) directory, by default to your home</li>
+                                <li>cd / -- change to the root directory</li>
+                                <li>cd ${HOME} -- change to your home directory variable replacement</li>
+                            </ul>
+                            <li>Creating Directories</li>
+                            <ul>
+                                <li>mkdir foo -- create a directory</li>
+                                <li>mkdir -p path/foo -- create a directory and any directorys that don't exist in the path</li>
+                            </ul>
+                            <li>Creating a File</li>
+                            <ul>
+                                <li>touch bar -- create an empty file</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Basic Shell Commands Cont. . :</h3>
+                        <ul>
+                            <li>Deleting Files and Directories</li>
+                            <ul>
+                                <li>rmdir foo -- remove an empty directory</li>
+                                <li>rm bar -- remove a file</li>
+                                <li>rm -r foo -- recursively remove directories and files</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Basic Shell Commands Cont. . :</h3>
+                        <ul>
+                            <li>Copy and Move Files</li>
+                            <ul>
+                                <li>cp foo /tmp/ -- copy foo to the /tmp directory</li>
+                                <li>cp foo foo2 -- copy foo to foo2</li>
+                                <li>mv foo /tmp/ -- move foo to the /tmp directory</li>
+                                <li>mv foo foo2 -- rename the file foo to foo2</li>
+                            </ul>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>Basic Editor Usage</h3>
+                    </section>
+
+                    <section>
+                        <h3>Editors(a limited list):</h3>
+                        <ul>
+                            <li>vi (one of the standards)</li>
+                            <li>emacs (one of the standards)(we are not covering this)</li>
+                            <li>nano (super basic)</li>
+                            <li>GUI Based Editor</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>vi</h3>
+                        <p>
+Vi has two modes insertion mode and command mode. When you enter the editor you are in command mode. You use insertion mode to make changes. After you are done with insertion mode you use [ESC] to return to command mode.
+                        </p>
+                        <p>
+Find a cheat sheet that you like, print it out, and keep it next to your computer until you use the commands enough to remember them.
+                        </p>
+                        <p>
+Start by typing 'vi FILENAME'
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>vi - basic commands</h3>
+                        <ul>
+                            <li>Quitting and Saving</li>
+                            <ul>
+                                <li>:q -- exit if no changes have been made</li>
+                                <li>:wq or :x -- exit saving(writing) changes</li>
+                                <li>:q! -- exit not saving changes</li>
+                            </ul>
+                            <li>Moving Around</li>
+                            <ul>
+                                <li>up arrow or 'k' -- move up</li>
+                                <li>down arrow or 'j' -- move down</li>
+                                <li>left arrow or 'h' -- move left</li>
+                                <li>right arrow or 'l' -- move right</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>vi - basic commands Continuted. . .</h3>
+                        <ul>
+                            <li>Inserting Text</li>
+                            <ul>
+                                <li>i -- insert before cursor</li>
+                                <li>a -- append after cursor</li>
+                                <li>o -- append in a new line after the current line</li>
+                                <li>r -- replace a character</li>
+                                <li>cw -- change word</li>
+                            </ul>
+                            <li>Deleting Text</li>
+                            <ul>
+                                <li>x -- delete a character to the right of the cursor</li>
+                                <li>dd -- delete the current line</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>vi - basic commands Continued. . .</h3>
+                        <ul>
+                            <li>Yanking and Putting Text</li>
+                            <ul>
+                                <li>yy -- yank the current line (copy)</li>
+                                <li>dd -- delete the current line (cut)</li>
+                                <li>p -- append after the position or after the line</li>
+                                <li>P -- insert before the position or before the line</li>
+                            </ul>
+                            <li>Searching</li>
+                            <ul>
+                                <li>/STRING -- search for the first instance after cursor of a STRING (wraps)</li>
+                                <li>n -- search again for the next instance</li>
+                                <li>N -- search again for the previous instance</li>
+                            </ul>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>nano</h3>
+                        <p>
+Super basic editor that is appropriate for beginners. All of the commands are based off of using control keys.
+                        </p>
+                        <p>
+The commands try to help you out and clarify what you are trying to do.
+                        </p>
+                        <p>
+                            Start by typing 'nano FILENAME'
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>nano - basic commands</h3>
+                        <ul>
+                            <li>CTL-x -- exit</li>
+                            <li>CTL-o -- save your file</li>
+                            <li>CTL-w -- search for text</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>GUI Based Editor</h3>
+                        <p>
+Your distribution along with installing a GUI will install editors that you can use to create and modify files. You can start these application by using commands from a shell.
+                        </p>
+                        <p>
+The easiest method to use if you have a GUI.
+                        </p>
+                        <ul>
+                            <li>Ubuntu</li>
+                            <ul>
+                                <li>gedit FILENAME</li>
+                            </ul>
+                            <li>Kubuntu</li>
+                            <ul>
+                                <li>kate FILENAME</li>
+                            </ul>
+                            <li>Lubuntu</li>
+                            <ul>
+                                <li>leafpad FILENAME</li>
+                            </ul>
+                        </ul>
+                        <p>
+Often I use Atom from the fine folks at GitHub.
+                        </p>
+                    </section>
+                </section>
+
+                <!-- What to expect Slide -->
+                <section>
+                    <section>
+                        <h3>What to expect in the next weeks?</h3>
+                    </section>
+
+                    <section>
+                        <h3>Weeks 14 - 17</h3>
+                        <ul>
+                            <li>Week 14 - Lab 12 - Moar CLI: Basic Admin</li>
+                            <li>Week 15 - Basic Security, Quiz 04</li>
+                            <li>Week 16 - Review</li>
+                            <li>Week 17 - Final Exam</li>
+                        </ul>
+                    </section>
+
+                </section>
+
+                <section>
+                    <h3>Rest of the evening:</h3>
+                    <ul>
+                        <li>Lab 11 </li>
+                    </ul>
+                </section>

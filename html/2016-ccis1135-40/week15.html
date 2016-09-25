@@ -1,0 +1,177 @@
+                <section>
+                    <p>
+No observation tonight.
+                    </p>
+                    <p>
+Feel free to take a look at some of the links for this class.
+                    </p>
+                </section>
+
+                <!-- Title Slide -->
+				<section>
+					<h3>HTC CCIS 1135-40</h3>
+					<h3>Desktop Linux</h3>
+					<h3>Week 15 of 17 - Basic Security</h3>
+					<p>
+						<small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+					</p>
+				</section>
+
+                <!-- agenda Slide -->
+                <section>
+                    <h3>agenda</h3>
+                    <ul>
+                        <!-- Lecture content -->
+                        <li>Basic Security</li>
+                        <!-- Upcoming content -->
+                        <li>What to expect in the next weeks?</li>
+                        <!-- The rest of the evening -->
+                        <li>Lab 12</li>
+                    </ul>
+                </section>
+
+                <!-- Lecture content slides -->
+                <section>
+                    <section>
+                        <h3>Basic Security</h3>
+                        <ul>
+                            <li>Anti-Virus</li>
+                            <li>Disk Encryption</li>
+                            <li>Firewalls</li>
+                            <li>Passwords</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <!-- Anti-Virus -->
+                <section>
+                    <section>
+                        <h3>Anti-Virus</h3>
+                        <p>
+For the most part the way that Linux has been engineered makes it harder for viruses to target it. In the future Linux is projected to become a bigger target. In the meantime running an anti-virus applicaion helps protect other systems.
+                        </p>
+                        <p>
+Ultimately making sure that your system has up to date software is some of the best protection. Scanning with anti-virus software is a bonus along with scanning for rootkits.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Anti-Virus examples. . .</h3>
+                        <ul>
+                            <li>ClamAV</li>
+                            <ul>
+                                <li>Open Source</li>
+                                <li>ClamTk</li>
+                            </ul>
+                            <br>
+                            <li>Comodo Anti-Virus for Linux</li>
+                            <li>Avast! Linux Home Edition</li>
+                            <li>AVG Antivirus</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Demo</h3>
+                        <ul>
+                            <li>sudo freshclam</li>
+                            <li>clamtk</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <!-- Disk Encryption -->
+                <section>
+                    <section>
+                        <h3>Disk Encryption</h3>
+                        <p>
+Full disk encryption protects your data by cryptographically encoding your data requiring a passphrase to unlock it. Though if you lose your passphrase your data is very difficult or impossible to reasonably recover.
+                        </p>
+                        <p>
+Use this to prevent from unauthorized access to your data. For example booting from an alternate disk and mounting your devices and accessing your data.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Demo</h3>
+                    </section>
+                </section>
+
+                <!-- Firewalls -->
+                <section>
+                    <section>
+                        <h3>Firewalls</h3>
+                        <p>
+The Linux firewall lives as a part of the kernel and is a packet filter. In the kernel it is netfilter, from the cli you traditionally use iptables, and now you can use ufw(uncomplicated firewall) for easier use. If you want a GUI interface you can use GUFW.
+                        </p>
+                        <p>
+Practically what is happening is that netfilter inspects packets coming in to the network interfaces and if a packet matches a rule you can allow, delete, or reject.
+                        </p>
+                        <p>
+This is a big deal for security because if you have a firewall in place you can block traffic from an attacker before it talks applications on your computer.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Demos</h3>
+                    </section>
+                </section>
+
+                <!-- Passwords -->
+                <section>
+                    <section>
+                        <h3>Passwords</h3>
+                        <p>
+Your password is your first line of security so choose wisely.
+                        </p>
+                    </section>
+
+                    <section>
+                        <p>
+When choosing a password first try to understand the password requirements and limitations.
+                        </p>
+                        <p>
+If you need to use a short password use both upper and lower case letters and numbers. If possible use special characters and whitespaces.
+                        </p>
+                        <p>
+If you are able to use a longer password try to choose a passphrase with words separated by whitespaces which may be easier to remember.
+                        </p>
+                        <p>
+The Krebs Dos and Don'ts is good to keep in mind.
+                        </p>
+                    </section>
+                </section>
+
+                <!-- What to expect Slide -->
+                <section>
+                    <section>
+                        <h3>What to expect in the next weeks?</h3>
+                    </section>
+
+                    <section>
+                        <h3>Weeks 14 - 17</h3>
+                        <ul>
+                            <li>Week 16 - Review - Lab 14</li>
+                            <li>Week 17 - Final Exam</li>
+                        </ul>
+                    </section>
+
+                </section>
+
+                <section>
+                    <h3>Rest of the evening: Lab 13(Don't Submit)</h3>
+                    <ul>
+                        <li>Install ClamTk and run a scan.</li>
+                        <ul>
+                            <li>sudo freshclam</li>
+                        </ul>
+                        <li>Install Ubuntu in a VM and enable encryption on install.</li>
+                        <li>Install GUFW and enable the firewall.</li>
+                        <li>Use <a href="https://howsecureismypassword.net/">https://howsecureismypassword.net/</a> to play with passwords.</li>
+                        <ul>
+                            <li>Don't submit a password you use ti already.</li>
+                            <li>Traffic should not be transferred over the internet but be careful.</li>
+                        </ul>
+                        <br />
+                        <li>Feel free to make up assignements.</li>
+                    </ul>
+                </section>

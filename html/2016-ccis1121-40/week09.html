@@ -1,0 +1,256 @@
+        <!-- Welcome Slide -->
+        <section>
+            <h3>Linux Admin 1 - Week 09</h3>
+            <h4>Readings for this Week</h4>
+            <ul>
+              <li>Chapter 11 is files, directories and filesystems.</li>
+              <li>Processes are all over the book. Some are:</li>
+              <li>Process ch. 5 pg. 158-159</li>
+              <li>Processes ch. 9 pg. 379-381</li>
+              <li>ps, pgrep pg. 456</li>
+              <li>Process in Glossery pg. 1266</li>
+              <br />
+              <li>Chapter 12 is package installation.(Next week.)</li>
+            </ul>
+        </section>
+
+        <!-- Title Slide -->
+				<section>
+  					<h3>HTC CCIS 1121-40</h3>
+  					<h3>Linux Admin 1</h3>
+  					<h3>Week 09</h3>
+  					<p>
+  						    <small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+  					</p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+                <li>Processes, Memory and Disk Space</li>
+                <li>upcoming weeks</li>
+                <li>lab 06</li>
+            </ul>
+        </section>
+
+        <!-- Intro Slide -->
+        <section>
+          <section>
+            <h3>Processes, Memory and Disk Space</h3>
+          </section>
+        </section>
+
+        <!-- Processes -->
+        <section>
+          <section>
+            <h3>Processes</h3>
+            <ul>
+              <li>What is a Process?</li>
+              <li>What are process related commands?</li>
+              <li>How to starting and stopping processes?</li>
+              <li>Why be nice?</li>
+              <li>How to monitor processes?</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>What is a Process?</h3>
+            <ul>
+              <li>A Process is the execution of a command by the Linux Kernel. pg. 379</li>
+              <li>Examples: Google Chrome, Gnome-Terminal, bash and other commands.</li>
+              <br />
+              <li>Processes have a PID(Process Identifier/ID)</li>
+              <li>Each process with a PID > 1 has a Parent Process with a PPID(Parent Process ID).
+              </ul>
+            </section>
+
+            <section>
+              <h3>What is a Process? cont...</h3>
+              <ul>
+              <li>A program can run multiple process and a process can run multiple threads.</li>
+              <li>Each process starts with a single thread but can create additional threads from any of its threads.</li>
+              <li>Processes run in separate memory spaces. Threads run in a shared memory space.</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+ps -eLf | less # LWP is the Light Weight Process ID
+              </code></pre>
+            </ul>
+          </section>
+
+          <section>
+            <h3>What are process related commands?</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+ps -ef | less
+ps -fu USERNAME    # List processes for a user.
+ps auxww           # List all user process and commands.
+ps axl             # List all processes including nice and memory usage.
+pstree             # List the process tree
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>How to start and stop processes?</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# You execute a process from either the PATH(which), an Absolute Path or a Relative Path
+bash            # Found in the ${PATH}
+/bin/bash       # Absolute Path
+../../bin/bash  # Relative Path
+cd /bin; ./bash # Another relative path
+
+# You can kill process by identifying their PID and passing it to the kill command.
+ps auxww | grep chrome
+kill PID # Asks the process to nicely exit.
+pkill httpd # Ask all httpd processes to exit.
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>kill, an asside</h3>
+            <ul>
+              <li>The kill command just sends a signal to a process. The processe decides what to do with the signal.</li>
+              <li>SIGTERM is the default behavior.</li>
+              <br />
+              <li>1 - SIGHUP - Reload Configuration</li>
+              <li>9 - SIGKILL - Forces the process to die.</li>
+              <li>15 - SIGTERM - Requests the process to terminate</li>
+              <br />
+              <li>SIGKILL can not be caugt, blocked or ignored.</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+kill -9 PID
+kill -15 PID
+
+pkill -9 httpd
+pkill -15 httpd
+              </code></pre>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Why be nice?</h3>
+            <ul>
+              <li>Sometimes if you have a long running process you can get it to be prioritized higher by changing how nice it is.</li>
+              <li>A niceness of -20 is the highest priority while 19 is the lowest priority.</li>
+              <li>The usual default niceness is 0 but the value is inherited from its parent process</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+nice -n -20 bash # Nice a process before you start it to preempt all other processes
+
+renice -n -20 PID # Re-nice an already running process to preempt all other processes
+
+renice -n 19 PID # Allow other processes to be executed before a process.
+            </code></pre>
+          </section>
+
+
+          <section>
+            <h3>How to monitor processes?</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+top # Show the top processes
+
+uptime # Show uptime and system load.
+
+sudo apt-get install htop
+sudo htop          # Pretty and customizable top.
+
+vmstat # Proceess, memory, paging, block IO, trap, disks, and CPU activity.
+vmstat 10  6# The above but every 10 seconds for one minute.
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Memory -->
+        <section>
+          <section>
+            <h3>Looking at Memory</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+free
+            </code></pre>
+            <ul>
+              <li>Check out memory usage</li>
+              <li>buffers: memory used to hold data moving to/from an external device</li>
+              <li>cached: disk data being held in memory to improve performance</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+cat /etc/meminfo # Even more information!
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Looking at Memory - Virtual Memory/SWAP</h3>
+            <ul>
+              <li>Virtual Memory - using a disk as an extension of RAM so that the effectie size of usable memory is larger than physical memory.</li>
+              <li>Programs running under Linux only see the larger amount of memory availible.</li>
+              <li>When you are out of physical memory and the OS uses swap space your sytem runs slower to write out to disk.</li>
+              <li>You can use multiple swap partitions.</li>
+              <li>Use vmstat to monitor.</li>
+              <li>See the manpage for mkswap for more info.</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+grep swap /etc/fstab # List known swap partitions.
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Disk Space -->
+        <section>
+          <section>
+            <h3>Monitoring Disk Space</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+df
+df /var
+df -h
+
+du
+du -sk * | sort -n
+du -sh *
+            </code></pre>
+            <ul>
+              <li>df</li>
+              <ul>
+                <li>Shows mounted disk information</li>
+                <li>Including Total, Used, Availibe, Used % and Mount Point</li>
+              </ul>
+              <li>du</li>
+              <ul>
+                <li>Shows disk usage information</li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- upcoming weeks -->
+        <section>
+          <section>
+            <h3>upcoming weeks</h3>
+            <ul>
+              <li>week 10</li>
+              <ul>
+                <li>Spring Break</li>
+              </ul>
+              <li>week 11</li>
+              <ul>
+                <li>Job Scheduling, Software Compilation and Installation</li>
+              </ul>
+              <li>week 12</li>
+              <ul>
+                <li>Kernel and Module Management; Logfile Analysis</li>
+              </ul>
+              <li>week 13</li>
+              <ul>
+                <li>Test 02</li>
+              </ul>
+              <li>week 14</li>
+              <ul>
+                <li>(Web) Servers</li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- lab -->
+        <section>
+          <h3>The rest of the evening:</h3>
+          <ul>
+            <li>lab 06</li>
+          </ul>
+        </section>

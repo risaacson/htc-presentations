@@ -1,0 +1,181 @@
+        <!-- Welcome Slide -->
+        <section>
+            <h3>Hi. Extension of last week.</h3>
+        </section>
+
+        <!-- Title Slide -->
+				<section>
+  					<h3>HTC CCIS 1121-40</h3>
+  					<h3>Linux Admin 1</h3>
+  					<h3>Week 16</h3>
+  					<p>
+  						    <small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+  					</p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+                <li>Shell Scripting Pt. 2</li>
+                <li>upcoming weeks</li>
+                <li>lab 11</li>
+            </ul>
+        </section>
+
+        <!-- Intro Slide -->
+        <section>
+          <section>
+            <h3>Shell Scripting Pt. 2</h3>
+            <ul>
+              <li>Loops</li>
+              <ul>
+                <li>for</li>
+                <li>while</li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- shell scripting basics -->
+        <section>
+          <section>
+            <h3>for Loops</h3>
+            <p>
+Used when you have a list or sequence of items that you want to iterate across.
+            </p>
+          </section>
+
+          <section>
+            <h3>Basic Loop in a Script</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+for x in 1 2 3 4 5; do
+  echo ${x}
+done
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>What does this script do?</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+for x in 1 2 3 4 5; do
+  echo $(( ${x} + 1 ))
+done
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>A script looping over a list of strings:</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+for cheese_type in mozarella chedder gouda; do
+  echo "I like eating ${cheese_type} cheese."
+done
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Adding new users with a script:</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+for user_name in larry mike susan; do
+  useradd ${user_name}
+  echo "User ${user_name} added"
+done
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Scripts generating sequences:</h3>
+            <p>
+Form 1:
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+# .. must be exactly as below
+for x in {1..10}; do
+  echo "${x}"
+done
+            </code></pre>
+            <p>
+Form 2:
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+for x in $( seq 1 10 ); do
+  echo "${x}"
+done
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Nested loops in a script:</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+for x in $( seq 1 10 ); do
+  for y in $( seq 1 10 ); do
+    echo "${x} + ${y} = $((${x}+${y}))"
+  done
+done
+            </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>while Loops</h3>
+            <p>
+Used when you have a boolean operation that you want to execute commands until a desired state.
+            </p>
+          </section>
+
+          <section>
+            <h3>While loops continue until a condition is met:</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+sum=0
+end_at=10
+while [ ${sum} -lt ${end_at} ]; do
+  echo ${sum}
+  sum=$(( ${sum} + 1 ))
+done
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>While loops can be used to read lines from a file:</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+while read line; do
+  echo ${line}
+done &lt;file.txt
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- upcoming weeks -->
+        <section>
+          <section>
+            <h3>upcoming weeks</h3>
+            <ul>
+              <li>week 17</li>
+              <ul>
+                <li>System Security, System Integrity, and Encryption</li>
+              </ul>
+              <li>week 18</li>
+              <ul>
+                <li>Final Test</li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- lab -->
+        <section>
+          <h3>The rest of the evening:</h3>
+          <ul>
+            <li>lab 11</li>
+          </ul>
+        </section>

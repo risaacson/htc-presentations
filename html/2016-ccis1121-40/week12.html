@@ -1,0 +1,203 @@
+        <!-- Welcome Slide -->
+        <section>
+            <h3>Linux Admin 1 - Week 12</h3>
+            <h4>Readings for this Week</h4>
+            <ul>
+              <li>Kernel</li>
+              <ul>
+                <li>Book page: 444</li>
+                <li>Book page: 1255</li>
+                <li><a href="https://en.wikipedia.org/wiki/Linux_kernel">https://en.wikipedia.org/wiki/Linux_kernel</a></li>
+                <li><a href="https://kernel.org/">kernel.org</a></li>
+              </ul>
+              <li>Logging</li>
+              <ul>
+                <li>Book page: 493</li>
+                <li><a href="http://www.rsyslog.com/doc/v8-stable/">http://www.rsyslog.com/doc/v8-stable/</a></li>
+              </ul>
+            </ul>
+        </section>
+
+        <!-- Title Slide -->
+				<section>
+  					<h3>HTC CCIS 1121-40</h3>
+  					<h3>Linux Admin 1</h3>
+  					<h3>Week 12</h3>
+  					<p>
+  						    <small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+  					</p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+                <li>Kernels, System Logging and Logger</li>
+                <li>upcoming weeks</li>
+                <li>lab 07</li>
+            </ul>
+        </section>
+
+        <!-- Intro Slide -->
+        <section>
+          <section>
+            <h3>Kernels, Logging and Logger</h3>
+            <ul>
+              <li>Kernel Overview</li>
+              <li>Kernel Modules</li>
+              <li>Logfiles</li>
+              <li>Logger</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Kernel Overview</h3>
+            <img src="/images/week12/kernel_stack.png" />
+            <ul>
+              <li>The Kernel is the main component of most computer operating systems.</li>
+              <li>It is a bridge between applications and the actuall data processing done at the hardware level.</li>
+              <li>The kernel's responsabilities include managing system resources.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Linux Kernel History</h3>
+            <ul>
+              <li>April 1991 Linus Torvalds initially conceived and created what would become the Linux Kernel.</li>
+              <li>Augest 25th 1991 Linus made a public announcement that he was working on a free operating system.</li>
+              <li>From 1991 to now over 12,000 programmers have contributed to the source.</li>
+              <li>September 1991 Kernel version 0.01 was realeased.</li>
+              <li>March 26th 2016 Kernel version 4.6-RC1</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Linux Kernel Info</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+uname -o # Prints the Operating System
+uname -r # Prints the Kernel Release
+uname -v # Prints the Kernel Version
+uname -a # Prints all Kernel Information.
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Kernel Modules</h3>
+            <ul>
+              <li>Kernel Modules are able to be added or removed to ad or remove functionality without usually requireing the Operating System to be rebooted.</li>
+              <li>Located under /lib/modules/KERNELVERSION/ as *.ko files.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Kernel Modules &amp; Kernel Info</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Run all commands as root or use `sudo`
+
+lshw # Print out the existing hardware.
+lspci -k # List PCI devices and drivers.
+
+apt-get install kvm # Install KVM
+lsmod | grep kvm # Search if KVM is installed in the kernel. It should not be.
+modprobe kvm # Load the KVM module into the kernel.
+lsmod | grep kvm # Search if KVM is installed in the kernel. It should be.
+rmmod kvm # Remove the KVM module from the kernel.
+lsmod | grep kvm # Search if KVM is installed in the kernel. It should not be.
+apt-get purge kvm &amp;&amp; apt-get autoremove -y # Clean-up after yourself!
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Upgrading the Kernel</h3>
+            <ul>
+              <li>Ubuntu/Redhat/OpenSUSE</li>
+              <ul>
+                <li>Update your installed packages and the package manager will take care of upgrading the kernel and modules for you. (Deps)</li>
+              </ul>
+              <li>From Source(Manual)</li>
+              <ul>
+                <li>Download and Uncompress the Kernel Release (source code)</li>
+                <li>Run the configure step to define what features you need</li>
+                <li>Compile and install the kernel and modules.</li>
+                <li>Update the bootloader to point to the new kernel.</li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Logging</h3>
+            <ul>
+              <li>Logging alows you to get output from system servies or daemons that do not run in the foreground</li>
+              <li>Older Linux distributions used syslog while modern Linux distributions use rsyslog</li>
+              <li>Rsyslog runs as rsyslogd and is configured in /etc/rsyslog.conf with logging rules in /etc/rsyslog.d</li>
+              <li>After you change the configuration you can restart the service with 'sudo restart service'</li>
+              <li>By default syslog and rsyslog write out under /var/log/</li>
+              <li>Log rotation is configured out of the box so your disks don't fill up.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Common Log Files</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# To read the logfiles you may need super-user permissions.
+
+/var/log/syslog # Logs everything except authorization related messages
+/var/log/auth # Logs Auth related messages
+/var/log/boot # Logs boot related messages
+/var/log/dmesg # logs kernel and driver related messages
+/var/log/mail # logs mail related messages
+
+# Using 'man FILENAME' will typically yield information about what
+# the logfile is for.
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Logger</h3>
+            <ul>
+              <li>The 'logger' command allows you to write out log message using the system facilities</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+logger Admin Making a Change # The message is logged out
+                             # into /var/log/syslog
+              </code></pre>
+              <li>Use 'man logger' for information on the various options.</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- upcoming weeks -->
+        <section>
+          <section>
+            <h3>upcoming weeks</h3>
+            <ul>
+              <li>week 13</li>
+              <ul>
+                <li>Test 02</li>
+              </ul>
+              <li>week 14</li>
+              <ul>
+                <li>(Web) Servers</li>
+              </ul>
+              <li>week 15</li>
+              <ul>
+                <li>Shell Scripting Pt. 1</li>
+              </ul>
+              <li>week 15</li>
+              <ul>
+                <li>Shell Scripting Pt. 2</li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- lab -->
+        <section>
+          <h3>The rest of the evening:</h3>
+          <ul>
+            <li>lab 08</li>
+          </ul>
+        </section>

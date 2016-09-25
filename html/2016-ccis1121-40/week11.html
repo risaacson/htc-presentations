@@ -1,0 +1,334 @@
+        <!-- Welcome Slide -->
+        <section>
+            <h3>Linux Admin 1 - Week 11</h3>
+            <h4>Readings for this Week</h4>
+            <ul>
+              <li>readings.doc on Cron</li>
+              <li><a href="https://en.wikipedia.org/wiki/Cron">https://en.wikipedia.org/wiki/Cron</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/At_(Unix)">https://en.wikipedia.org/wiki/At_(Unix)</a></li>
+              <li>Book - Cron & At - pg. 573-576</li>
+              <li>Book - Softwar Building and Installation - ch. 12</li>
+            </ul>
+        </section>
+
+        <!-- Title Slide -->
+				<section>
+  					<h3>HTC CCIS 1121-40</h3>
+  					<h3>Linux Admin 1</h3>
+  					<h3>Week 11</h3>
+  					<p>
+  						    <small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+  					</p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+                <li>Job Scheduling, Software Compilation and Installation</li>
+                <li>upcoming weeks</li>
+                <li>lab 07</li>
+            </ul>
+        </section>
+
+        <!-- Intro Slide -->
+        <section>
+          <section>
+            <h3>Job Scheduling, Software Compilation and Installation</h3>
+            <ul>
+              <li>Job Scheduling (cron, at)</li>
+              <li>Software Compiliation (README, ./configure, make)</li>
+              <li>Software Installation (apt-get, aptitude, dpkg)
+            </ul>
+          </section>
+        </section>
+
+        <!-- Processes -->
+        <section>
+          <section>
+            <h3>Job Scheduling</h3>
+            <ul>
+              <li>cron - execute on a repeating schedule in the future</li>
+              <li>at - execute once AT some time in the future</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>cron</h3>
+            <p>
+"The software utility Cron is a time-based job scheduler in Unix-like computer operating systems. People who set up and maintain software environments use cron to schedule jobs (commands or shell scripts) to run periodically at fixed times, dates, or intervals." - cron page on Wikipedia
+            </p>
+            <ul>
+              <li>A cron job is a command executed by the crond system daemon.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>cron continued. . .</h3>
+            <ul>
+              <li>Crontab files hold lists of cron jobs on each newline (excluding comments #) and there are files for the system and for each user.</li>
+              <li>`crontab` is a command that allows you to interact with your users crontab.</li>
+              <li>Each crontab entry follows the below pattern.</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+MINUTE HOUR DOM MONTH DOW COMMAND
+
+MINUTE = 0-59
+HOUR = 0-23
+DOM = Day of Month -> 1-31
+MONTH = 1-12
+DOW = Day of Week -> 0-6 or SUN,MON,TUE,WED,THU,FRI,SAT
+COMMAND = The command you want to run
+              </code></pre>
+            </ul>
+          </section>
+
+          <section>
+            <h3>cron continued. . .</h3>
+            <ul>
+              <li>Crontab file locations</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# System
+/etc/crontab
+/etc/cron.hourly
+/etc/cron.daily
+/etc/cron.weekly
+/etc/cron.monthly
+
+# User
+/var/spool/cron/crontabs/USERNAME
+              </code></pre>
+            </ul>
+          </section>
+
+          <section>
+            <h3>crontab commands</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#Create a file and set the contents as your crontab
+vi myCrontab
+crontab myCrontab
+
+# List your crontab
+crontab -l
+
+# Edit your crontab
+crontab -e
+
+# Remove your crontab
+crontab -r
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Crontab examples</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Run a command ten minutes after every hour
+10 * * * * /root/command.sh
+
+# Run a command every day at 8:10pm
+10 20 * * * /root/command.sh
+
+# Run a command at mindnight of Feb 29th.
+0 0 29 2 * /root/command.sh
+
+# Run a command at 10:10am on Tuesdays
+10 10 * * 2 /root/command.sh
+or
+10 10 * * TUE /root/command.sh
+
+# Run a command every 15 minutes.
+*/15 * * * * /root/command.sh
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>at</h3>
+            <p>
+". . .the at command is used to schedule commands to be executed once, at a particular time in the future." - at (Unix) page on Wikipedia
+            </p>
+            <ul>
+              <li>At tasks are managed by the atd daemon which periodically checks for tasks to be run.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>at examples</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Run a command in 15 minutes
+echo "/root/command.sh" | at now + 15
+
+# Run a command at noon October 31st
+$ at 1200 oct 31
+at> /root/command.sh
+at> ^D
+
+# List queued tasks
+atq
+
+# Remove a scheduled task by ID from atq.
+atrm TASKID
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Software Compilation -->
+        <section>
+          <h3>Software Compilation</h3>
+          <section>
+            <ul>
+              <li>Compile native source code into a native binary.</li>
+              <li>You may need to install a compiler if one is not already installed.</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Install build tools
+sudo apt-get install build-essential
+
+# Prepare Installation Directory
+mkdir -p /opt/python
+
+# Download and Decompress Source Archive
+cd && wget https://www.python.org/ftp/python/3.4.4/Python-3.4.4.tgz
+cd /usr/src && tar xvf ~/Python-3.4*.tgz && cd Python-3.4*
+
+# Compile, Install and Test software
+./configure --prefix=/opt/python/3.4.4
+make && make test && make install
+/opt/python/3.4.4/bin/python3 -V
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Software Installation -->
+        <section>
+          <section>
+            <h3>Software Installation</h3>
+            <p>
+Install and Remove software packages. Software packages are managed and pre-built applications that make installation easier.
+            </p>
+            <ul>
+              <li>dpkg - raw package management</li>
+              <ul>
+                <li>If you have a package locally.</li>
+              </ul>
+              <li>apt-get - the go to package management</li>
+              <ul>
+                <li>Remote repository based packages</li>
+              </ul>
+              <li>aptitude - helpful package management</li>
+              <ul>
+                <li>Remote repository based packages</li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>dpkg</h3>
+              <ul>
+                <li>The raw command to work with system packages.</li>
+                <li>With other packag commands dpkg is executed behind the scenes.</li>
+              </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Install the package containing the at command.
+dpkg -i at_3.1.14-1ubuntu1_amd64.deb
+
+# List all installed files
+dpkg -l
+
+# Remove the at package
+dpkg -r at
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>apt-get</h3>
+              <ul>
+                <li>The standard way to work with system packages and remote repositories.</li>
+              </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Update the local package cache.
+sudo apt-get update
+
+# Install the package containing the at commands.
+sudo apt-get install at
+
+# Upgrade all packages and withhold packages that may be distribution upgrades.
+sudo apt-get upgrade
+
+# Upgrade all packages and including distribution upgrades. Auto-answer yes for any questions.
+sudo apt-get dist-upgrade -y
+
+# Remove the package containing the at commands.
+sudo apt-get remove at
+
+# Purge the package containing httpd and its configuration.
+sudo apt-get purge httpd
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>aptitude</h3>
+              <ul>
+                <li>A more feature friendly way to work with packages.</li>
+              </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Make sure that aptitude is installed
+sudo apt-get install -y aptitude
+
+# Update the local package cache.
+sudo aptitude update
+
+# Install the package containing the at commands.
+sudo aptitude install at
+
+# Safe upgrade of all packages
+sudo aptitude safe-upgrade
+
+# Full upgrade of all packages
+sudo aptitude full-upgrade
+
+# Remove the package containing the at commands.
+sudo aptitude remove at
+
+# Purge the package containing httpd and its configuration.
+sudo aptitude purge httpd
+
+# Search for the expect package.
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- upcoming weeks -->
+        <section>
+          <section>
+            <h3>upcoming weeks</h3>
+            <ul>
+              <li>week 12</li>
+              <ul>
+                <li>Kernel and Module Management; Logfile Analysis</li>
+              </ul>
+              <li>week 13</li>
+              <ul>
+                <li>Test 02</li>
+              </ul>
+              <li>week 14</li>
+              <ul>
+                <li>(Web) Servers</li>
+              </ul>
+              <li>week 15</li>
+              <ul>
+                <li>Shell Scripting Pt. 1</li>
+              </ul>
+              <li>week 15</li>
+              <ul>
+                <li>Shell Scripting Pt. 2</li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- lab -->
+        <section>
+          <h3>The rest of the evening:</h3>
+          <ul>
+            <li>lab 07</li>
+          </ul>
+        </section>

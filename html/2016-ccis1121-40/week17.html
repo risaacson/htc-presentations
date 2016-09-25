@@ -1,0 +1,396 @@
+        <section>
+          <ul>
+            <li>Cryptography</li>
+            <ul>
+              <li>pg. 526-641</li>
+            </ul>
+            <li>GPG</li>
+            <ul>
+              <li>pg. 641-656</li>
+            </ul>
+          </ul>
+        </section>
+
+                <!-- Title Slide -->
+				<section>
+					<h3>HTC CCIS 1121-40</h3>
+					<h3>Linux Admin 1</h3>
+					<h3>Week 17 of 18 - System Security, System Integrity and Encryption</h3>
+					<p>
+						<small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+					</p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+                <!-- Lecture content -->
+                <li>System Security, System Integrity and Encryption</li>
+                <!-- Upcoming content -->
+                <li>What to expect in the next weeks?</li>
+                <!-- The rest of the evening -->
+                <li>Lab 12</li>
+            </ul>
+        </section>
+
+        <!-- Lecture content slides -->
+        <section>
+            <section>
+                <h3>Basic Security</h3>
+                <ul>
+                    <li>Anti-Virus</li>
+                    <li>Disk Encryption</li>
+                    <li>Firewalls</li>
+                    <li>Passwords</li>
+                    <li>File Encryption</li>
+                </ul>
+            </section>
+        </section>
+
+        <!-- Anti-Virus -->
+        <section>
+            <section>
+                <h3>Anti-Virus</h3>
+                <p>
+For the most part the way that Linux has been engineered makes it harder for viruses to target it. In the future Linux is projected to become a bigger target. In the meantime running an anti-virus applicaion helps protect other systems.
+                </p>
+                <p>
+Ultimately making sure that your system has up to date software is some of the best protection. Scanning with anti-virus software is a bonus along with scanning for rootkits.
+                </p>
+            </section>
+
+            <section>
+                <h3>Anti-Virus examples. . .</h3>
+                <ul>
+                    <li>ClamAV</li>
+                    <ul>
+                        <li>Open Source</li>
+                        <li>ClamTk</li>
+                    </ul>
+                    <br>
+                    <li>Comodo Anti-Virus for Linux</li>
+                    <li>Avast! Linux Home Edition</li>
+                    <li>AVG Antivirus</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Demo</h3>
+                <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo apt-get install clamav
+
+sudo freshclam
+
+sudo clamscan /home/
+                </code></pre>
+            </section>
+        </section>
+
+        <!-- Disk Encryption -->
+        <section>
+            <section>
+                <h3>Disk Encryption</h3>
+                <p>
+Full disk encryption protects your data by cryptographically encoding your data requiring a passphrase to unlock it. Though if you lose your passphrase your data is very difficult or impossible to reasonably recover.
+                </p>
+                <p>
+Use this to prevent from unauthorized access to your data. For example booting from an alternate disk and mounting your devices and accessing your data.
+                </p>
+            </section>
+
+            <section>
+                <h3>Demo</h3>
+            </section>
+        </section>
+
+        <!-- Firewalls -->
+        <section>
+            <section>
+                <h3>Firewalls</h3>
+                <p>
+The Linux firewall lives as a part of the kernel and is a packet filter. In the kernel it is netfilter, from the cli you traditionally use iptables, and now you can use ufw(uncomplicated firewall) for easier use. If you want a GUI interface you can use GUFW.
+                </p>
+                <p>
+Practically what is happening is that netfilter inspects packets coming in to the network interfaces and if a packet matches a rule you can allow, delete, or reject.
+                </p>
+                <p>
+This is a big deal for security because if you have a firewall in place you can block traffic from an attacker before it talks applications on your computer.
+                </p>
+            </section>
+
+            <section>
+                <h3>Demos</h3>
+                <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo apt-get install ufw
+
+# Get the status
+sudo ufw status
+
+# Enable/Disable
+sudo ufw disable
+sudo ufw enable
+
+# Set Up Defaults
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+# Allow http
+sudo ufw allow http
+
+# Reset rules
+sudo ufw reset
+                </code></pre>
+            </section>
+        </section>
+
+        <!-- Passwords -->
+        <section>
+            <section>
+                <h3>Passwords</h3>
+                <p>
+Your password is your first line of security so choose wisely.
+                </p>
+            </section>
+
+            <section>
+                <p>
+When choosing a password first try to understand the password requirements and limitations.
+                </p>
+                <p>
+If you need to use a short password use both upper and lower case letters and numbers. If possible use special characters and whitespaces.
+                </p>
+                <p>
+If you are able to use a longer password try to choose a passphrase with words separated by whitespaces which may be easier to remember.
+                </p>
+                <p>
+The Krebs Dos and Don'ts is good to keep in mind. <a href="http://krebsonsecurity.com/password-dos-and-donts/">http://krebsonsecurity.com/password-dos-and-donts/<a/>
+                </p>
+                <p>
+<a href="https://howsecureismypassword.net/">https://howsecureismypassword.net/</a> can give you an idea of how hard it would be to crack a password. Don't use your password here, just examples.
+                </p>
+            </section>
+        </section>
+
+        <!-- File Encryption -->
+        <section>
+          <section>
+            <h3>File Encryption</h3>
+            <p>
+We are going to look at encrypting files so that we can safely transfer them to people that we trust with the information.
+            </p>
+          </section>
+
+          <section>
+            <h3>Glossery</h3>
+            <ul>
+              <li>Encryption</li>
+              <ul>
+                <li>The process of encrypting data in such a was that unintended recipients cannot read it.</li>
+              </ul>
+              <li>Plaintext</li>
+              <ul>
+                <li>The original or decrypted message.</li>
+              </ul>
+              <li>Ciphertext</li>
+              <ul>
+                <li>The encrypted message.</li>
+              </ul>
+              <li>Algorithm</li>
+              <ul>
+                <li>A set of instructions that are performed to encrypt and decrypt a message.</li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Glossery - continued.</h3>
+            <ul>
+              <li>Key</li>
+              <ul>
+                <li>A value which is used by algorithm to perform encryption of a certain key.</li>
+              </ul>
+              <li>Key Ring</li>
+              <ul>
+                <li>Hold your keys and other users' public keys.</li>
+              </ul>
+              <li>Symmetric Encryption</li>
+              <ul>
+                <li>Uses the same key to encode and decode information.</li>
+              </ul>
+              <li>Asymmetric Encryption</li>
+              <ul>
+                <li>Uses different keys to encode and decode the information.</li>
+                <li>Public Key Encryption is an example.</li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>GNU Privacy Guard(GPG)</h3>
+            <ul>
+              <li>A free and open source software used to generate keys as well as to encrypt and decrypt data.</li>
+              <li>Built into some Linux distributions or installable through the package manager.</li>
+              <li>Find more info using `man gpg` or at <a href="http://www.gnupg.org/gph/en/manual.html">http://www.gnupg.org/gph/en/manual.html</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Symmetric Encryption</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Create a file
+echo "foo bar baz" > aFile.txt
+
+# Encrypt the file and you will be asked for a passphrase.
+gpg -c aFile.txt
+
+# list and get the type of the file
+ls aFile.txt*
+file aFile.txt.gpg
+
+# move the original file, decrypt and compare
+mv aFile.txt.orig
+gpg aFile.txt.gpg -o aFile.txt.new
+diff aFile.txt.orig aFile.txt.new
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Asymmetric Encryption</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Create Alice as a User
+sudo useradd alice
+sudo su - alice
+# Genertate a Key for Alice
+# Enter in Kind of Key (RSA and RSA), Size (2048), Expires (0)
+# Real Name (Alice), E-mail (alice@example.com), Passphrase (alice)
+gpg --gen-key
+# Export Alice's public key.
+gpg --armor --output /tmp/key-pub-alice.asc --export alice
+exit
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Asymmetric Encryption - Continued</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Create Bob as a User
+sudo useradd bob
+sudo su - bob
+# Genertate a Key for Bob
+gpg --gen-key
+# Export Bob's public key.
+gpg --armor --output /tmp/key-pub-bob.asc --export bob
+exit
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Asymmetric Encryption - Continued</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# As Alice import Bob's Key
+sudo su - alice
+gpg --import /tmp/key-pub-bob.asc
+exit
+
+# As Bob import Alice's Key
+sudo su - bob
+gpg --import /tmp/key-pub-alice.asc
+exit
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Asymmetric Encryption - Continued</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# List Keys as Alice
+sudo useradd alice
+
+# List Public Keys
+gpg --list-keys
+
+# List Secret Keys
+gpg --list-secret-keys
+exit
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Asymmetric Encryption - Continued</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Have Alice create a file to encrypt
+sudo su - alice
+# Run this a couple times
+echo "foo bar baz" >> aFile.txt
+
+# Encrypt the file to bob
+gpg --encrypt aFile.txt
+# Type in bob as the ID, confirm with a y, and hit enter to exit.
+
+cp aFile.txt.gpg /tmp/aFile.txt.gpg
+exit
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Asymmetric Encryption - Continued</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Decrypt a file as Bob.
+sudo su - bob
+
+gpg --decrypt -o ~/aFile.txt /tmp/aFile.txt.gpg
+# Enter bob's passphrase
+
+cat aFile.txt
+
+exit
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Asymmetric Encryption - Continued</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Delete Keys:
+sudo su - alice
+
+# Delete a public Key
+gpg --delete-keys bob
+
+# Delete a Secret Key
+gpg --delete-secret-keys alice
+
+exit
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Asymmetric Encryption - Continued</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Clean-up:
+sudo  deluser alice --remove-all-files
+sudo  deluser bob --remove-all-files
+sudo  sudo rm /tmp/aFile* /tmp/key-pub-*
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- What to expect Slide -->
+        <section>
+            <section>
+                <h3>What to expect in the next weeks?</h3>
+            </section>
+
+            <section>
+                <h3>Week 18</h3>
+                <ul>
+                    <li>Week 18 - Final Exam</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <h3>Rest of the evening:</h3>
+            <ul>
+                <li>Lab 12 (Optional)</li>
+            </ul>
+        </section>

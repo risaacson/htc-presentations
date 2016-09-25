@@ -1,0 +1,196 @@
+        <!-- Welcome Slide -->
+        <section>
+          <h3>Week 04 of Linux Admin 2</h3>
+          <h4>Cleanup and commands to run for class.</h4>
+          <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo rpm -iUvh https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
+sudo yum -y update
+
+sudo yum install git
+
+cd ~
+git clone https://github.com/dfederlein/lightbulb.git
+
+echo 'net.ipv4.ip_forward = 1' | sudo tee /usr/lib/sysctl.d/50-default.conf
+sudo /sbin/sysctl -p
+
+cd ~/.ssh
+wget https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant
+chmod 400 vagrant
+ssh-add vagrant
+          </code></pre>
+        </section>
+
+                <!-- Title Slide -->
+				<section>
+  					<h3>HTC CCIS 2122-40</h3>
+  					<h3>Linux Admin 2</h3>
+  					<h3>Week 04</h3>
+  					<p>
+  						    <small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+  					</p>
+            <p>
+              <small><a href="https://instructor.recycledthoughts.org/">instructor.recycledthoughts.org</a></small>
+            </p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+              <li>Last Week in Review</li>
+              <li>Extra Credit</li>
+              <li>How this will fit together</li>
+              <li>Basic Introduction to Git</li>
+              <li>Introduction Automation with Ansible and Vagrant</li>
+              <ul>
+                <li>With David Federlein</li>
+                <li>Global Director of Support, Ansible Tower by Red Hat</li>
+              </ul>
+              <li>Rest of the evening</li>
+            </ul>
+        </section>
+
+        <!-- Last Week in Review -->
+        <section>
+          <section>
+            <h3>Last Week in Review - We did. . .</h3>
+            <ul>
+              <li>Linux Admin 1 Review</li>
+              <li>Re-Intro to Virtualization</li>
+              <li>Intro to Vagrant</li>
+              <ul>
+                <li>Booted and connected to basic VMs</li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Extra Credit -->
+        <!-- Introduction to Git -->
+        <section>
+          <section>
+            <h3>Extra Credit</h3>
+            <ul>
+              <li>Go to outside industry events.</li>
+              <li>Check in with me or someone I arrange.</li>
+              <li>Write a page:</li>
+              <ul>
+                <li>What did you see?</li>
+                <li>How did you participate?</li>
+                <li>What did you learn?</li>
+              </ul>
+              <li>Worth a lab and you can do two.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Extra Credit Opprunity: 1</h3>
+            <ul>
+              <li>MinneDemo 24</li>
+              <li>Sept 21st at the Riverview Theater</li>
+              <li>7 demos and time to network</li>
+              <li><a href="https://minnedemo24.eventbrite.com">Eventbrite Tickets</a></li>
+              <li>minnedemo24.students</li>
+              <li>I run day-of volunteers</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Extra Credit Opprunity: 2</h3>
+            <ul>
+              <li>Penguins Unbound</li>
+              <li>Sept 17th at Veritas</li>
+              <li>Talk on SmartOS</li>
+              <li><a href="https://www.meetup.com/PenguinsUnbound/events/226539615/">Meetup.com</a></li>
+              <li>I will not make it. Ask for Brian Dolan-Goeke</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Extra Credit Opprunity: 3</h3>
+            <ul>
+              <li>Ansible Minneapolis/DevOps Minneapolis</li>
+              <li>Sept 14th at Olsen Agency</li>
+              <li>Useful Ansible</li>
+              <li><a href="https://www.meetup.com/DevOps-Minneapolis/events/233293480/">Meetup.com</a></li>
+              <li>I will be at this event</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- How this will fit together -->
+        <section>
+          <section>
+            <h3>How this will fit together. . .</h3>
+            <h4>At the end of the night you will be able to:</h4>
+            <ul>
+              <li>Already have an understanding of how vagrant helps us out</li>
+              <li>Understand what Git is and what it will do for you</li>
+              <li>Use git to clone a repository</li>
+              <li>Start using Ansible to automate complex deployments and configurations</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Basic Introduction to Git -->
+        <section>
+          <section>
+            <h3>Basic Introduction to Git</h3>
+            <ul>
+              <li>Source Control Management</li>
+              <br />
+              <li>Lets you store revisions of files.</li>
+              <li>Used mainly for text files.</li>
+              <br />
+              <li>linux kernel</li>
+              <li>github.com</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Basic Git Commands</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+git checkout https://github.com/ansible/lightbulb.git
+
+git pull
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Other SCM</h3>
+            <ul>
+              <li>CVS</li>
+              <li><a href="https://www.mercurial-scm.org/">Mercurial</a></li>
+              <li><a href="https://subversion.apache.org/">Subversion</a></li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Introduction Automation with Ansible -->
+        <section>
+          <section>
+            <h3>Introduction Automation with Ansible and Vagrant</h3>
+            <h4>David Federlein</h4>
+            <h4>Global Director of Support, Ansible Tower by Red Hat</h4>
+          </section>
+        </section>
+
+        <!-- Questions Slide -->
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <section>
+            <h3>Rest of the evening:</h3>
+            <ul>
+                <li>Get used to your workstation</li>
+            </ul>
+            <h3>Next Weeks:</h3>
+            <ul>
+              <li>Week 05: Apache HTTPd</li>
+              <li>Week 06: Apache HTTPd Automated</li>
+              <li>Week 07: </li>
+              <li></li>
+            </ul>
+        </section>

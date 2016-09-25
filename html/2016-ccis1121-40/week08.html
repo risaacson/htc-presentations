@@ -1,0 +1,269 @@
+        <!-- Welcome Slide -->
+        <section>
+            <h3>Linux Admin 1 - Week 08</h3>
+            <ul>
+              <li>Have you read Chapter 3?</li>
+              <li>The syllabus should have told you to read Chapter 10.</li>
+              <br />
+              <li>No test reveiw tonight as everyone hasn't taken the test.</li>
+            </ul>
+        </section>
+
+        <!-- Title Slide -->
+				<section>
+  					<h3>HTC CCIS 1121-40</h3>
+  					<h3>Linux Admin 1</h3>
+  					<h3>Week 08</h3>
+  					<p>
+  						    <small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+  					</p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+                <li>upcoming weeks</li>
+                <li>lab 05</li>
+            </ul>
+        </section>
+
+        <!--  -->
+        <section>
+          <section>
+            <h3>System Statup, System Shutdown, and Boot Loaders</h3>
+            <ul>
+              <li>shutdown &amp; reboot</li>
+              <li>boot process</li>
+              <li>runlevels</li>
+              <li>boot scripts</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- shutdown and reboot -->
+        <section>
+          <section>
+            <h3>shutdown &amp; reboot</h3>
+            <p>
+Arranges for the system to be brought down in a safe way.
+            </p>
+            <ul>
+              <li>shutdown</li>
+              <br />
+              <li>reboot</li>
+              <li>halt - poweroff or shutdown and wait for prompt to boot</li>
+              <li>poweroff</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>shutdown &amp; reboot continued. . .</h3>
+            <ul>
+              <li>shutdown</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+shutdown [OPTION...] TIME [MESSAGE]
+
+shutdown
+
+shutdown now # Shutdown now!
+shutdown +10 # Shutdown in 10 minutes
+shutdown 20:50 # Shutdown at 8:50pm
+
+shutdown -r now # Shutdown and Reboot
+shutdown -h now # Shutdown and Halt
+shutdown -P now # Shutdown and Poweroff
+              </code></pre>
+              <li>reboot</li>
+              <li>halt</li>
+              <li>poweroff</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+reboot
+halt
+poweroff
+              </code></pre>
+            </ul>
+          </section>
+        </section>
+
+        <!--  -->
+        <section>
+          <section>
+            <h3>boot process</h3>
+            <p>
+We are going to focus on the existing MBR and Unix System V Init system. In the near future UFEI and systemd seem to be gaining traction and a quick adoption.
+            </p>
+            <p>
+Ubuntu in parralel uses upstart but we are not going to focus on that right now. Feel free to read more about it.
+            </p>
+          </section>
+
+          <section>
+            <h3>boot process - continued</h3>
+            <ol>
+              <li>BIOS - Has a boot order, searches for first MBR, executes MBR.</li>
+              <li>MBR - Master Boot Record. In most Linuxes executes GRUB.</li>
+              <li>GRUB - Grand Unified Bootloader bootstraps the Linux Kernel.</li>
+              <li>Kernel - Amongs other things executes /sbin/init beginning system services.</li>
+              <li>init - Executes system initalization scripts including runlevel programs.</li>
+              <li>Runlevel - Scripts to start and stop system services which are executed from /etc/rc*.d/</li>
+            </ol>
+          </section>
+
+          <section>
+            <h3>BIOS (Basic Input/Output System)</h3>
+            <ul>
+              <li>Peforms system integrity checks</li>
+              <li>Loads and executes the MBR boot loader</li>
+              <li>It looks for the boot loader in a flopy, CD/DVD-ROM or Hard Drive</li>
+              <li>Once the boot loader program is detected and loaded into memory the BIOS gives over control to it.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>MBR (Master Boot Record)</h3>
+            <ul>
+              <li>The first 512+ bytes of the first sector of the boot device. It may contain a partition table and bootstrap code.</li>
+              <li>Not a partition.</li>
+              <li>Located on the boot device. On linux this may be /dev/sda.</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo fdisk /dev/sda -l
+              </code></pre>
+              <br />
+              <li>GUID Partition Table(GPT) scheme is used on newer systems to get past MBR size limitations.</li>
+              <li>GRUB data is loaded into the MBR.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>GRUB</h3>
+            <ul>
+              <li>Contains information used to bootstrap the kernel including the location of the files.</li>
+              <li>Configuration is located at /boot/grub/grub.cfg and /etc/grub.cfg being a link.</li>
+              <li>You can force grub to install boot information.</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo grub-install /dev/sda
+              </code></pre>
+              <li>Loads and executes the Kernel and initrd(inital ramdisk) images.</li>
+              <li>Can be used to boot other OSes.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Kernel</h3>
+            <ul>
+              <li>Uses initrd as a temporary root file system until the kernel is booted and the real root filesytem is mounted via the init system. It contains all of the intial drivers to start the sytem.</li>
+              <li>The kernel executes the /sbin/init program.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Init</h3>
+            <ul>
+              <li>Is the parent of all other processes and it has a PID of 1.</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+ps auxww | grep '/sbin/init' | grep -v grep
+              </code></pre>
+              <li>Executes specific programs/scripts based on the system runlevel to start or stop services sequentially.</li>
+              <li>Is the traditional init system but is being replaced by systemd and has an alternative upstartd.</li>
+              <li>Default runlevel can be modified in /etc/init/rc-sysinit.rc</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Init Runlevels</h3>
+            <ul>
+              <li>0 - halt</li>
+              <li>1 - single user mode - maintaince/recovery</li>
+              <li>2 - multi-user mode without NFS</li>
+              <li>3 - full multi-user mode</li>
+              <li>4 - user defined - unused</li>
+              <li>5 - X11 - GUI Desktop</li>
+              <li>6 - reboot</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+runlevel
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Runlevel Scripts</h3>
+            <ul>
+              <li>Under /etc there are directories rc(0|1|2|3|4|5|6|S).d that hold links to scripts in /etc/init.d for starting and stopping services.</li>
+              <li>For instance if you are in runlevel 2 all scripts in /etc/rc2.d will be executed when you enter that runlevel.</li>
+              <li>/etc/rc.local is a script that is executed during boot time regardless of boot level.</li>
+              <li>There are two types of scripts: S (start) and K (kill). All are executed in sequential order.</li>
+              <br />
+              <li>Each rc*.d directory has a README which describes the scripts and runlevel.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>boot process - common init/runlevel scripts</h3>
+            <p>
+Some init scripts are:
+            </p>
+            <ul>
+              <li>cron</li>
+              <li>filesystem</li>
+              <li>networking</li>
+              <li>security - apparmor</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+  service --status-all
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>boot process - more on init scripts</h3>
+            <p>
+Depending on your administrative needs as you add services to a server you will create scripts to initalize the services after the system boots.
+            </p>
+            <p>
+Other common services:
+            </p>
+            <ul>
+              <li>httpd server - apache, nginx</li>
+              <li>proxy server - haproxy, nginx</li>
+              <li>application server - wordpress, drupal, etc.</li>
+              <li>DNS/mail/DS/file server</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- upcoming weeks -->
+        <section>
+          <section>
+            <h3>upcoming weeks</h3>
+            <ul>
+              <li>week 09</li>
+              <ul>
+                <li>Processes and System Resources</li>
+              </ul>
+              <li>week 10</li>
+              <ul>
+                <li>Spring Break</li>
+              </ul>
+              <li>week 11</li>
+              <ul>
+                <li>Job Scheduling, Software Compilation and Installation</li>
+              </ul>
+              <li>week 12</li>
+              <ul>
+                <li>Kernel and Module Management; Logfile Analysis</li>
+              </ul>
+              <li>week 13</li>
+              <ul>
+                <li>Test 02</li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- lab -->
+        <section>
+          <h3>The rest of the evening:</h3>
+          <ul>
+            <li>lab 05</li>
+          </ul>
+        </section>

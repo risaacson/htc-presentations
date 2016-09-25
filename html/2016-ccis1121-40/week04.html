@@ -1,0 +1,623 @@
+        <!-- Welcome Slide -->
+        <section>
+            <h3>Linux Admin 1 - Week 04</h3>
+            <p>
+If you have extra time before class. . .
+            </p>
+            <ul>
+                <li>Reveiw last week's slides</li>
+                <li>Catch up on reading from our book. (Chapters 1 - 7)</li>
+                <li>Finish up Lab 02 from last week</li>
+                <ul>
+                  <li>Due at end of class</li>
+                  <li>Will finish covering in class</li>
+                  <li>Will review commands in the first part of the lecture</li>
+                </ul>
+            </ul>
+        </section>
+
+        <!-- Title Slide -->
+				<section>
+  					<h3>HTC CCIS 1121-40</h3>
+  					<h3>Linux Admin 1</h3>
+  					<h3>Week 04</h3>
+  					<p>
+  						    <small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+  					</p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+                <li>basic commands: review (~30 minutes)</li>
+                <li>intro to filesystems, users, and groups (~30 - ~45 minutes)</li>
+                <li>upcoming weeks</li>
+                <li>finish lab 02</li>
+                <li>lab 03</li>
+            </ul>
+        </section>
+
+        <!-- START basic commands: review -->
+
+        <section>
+          <section>
+            <h3>Basic Commands: Review</h3>
+            <p>
+Last week we talked about a lot of new concepts.
+            </p>
+            <p>
+Lets review the commands from the lecture and finish up walking through the review of the lab 02.
+            </p>
+            <p>
+Free free to type along or take notes though these slides will be up on D2L.
+            </p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p>
+What command can you use to look up a command's definition, syntext, options and usage examples?
+            </p>
+          </section>
+
+          <!-- man and info -->
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+man &lt;COMMAND&gt;    # get manual page for a command
+
+man man
+
+# q (quits), SPACE (forward page), b (back page)
+
+info &lt;COMMAND&gt;    # get the info page for a command
+
+info info
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- ls -->
+        <section>
+          <section>
+            <p>
+What command do you use to list the contents of a directory?
+            </p>
+            <p>
+What flags used with this command are useful?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+ls
+ls /home/linuxadmin
+ls ./
+
+ls -l # long listing
+
+ls -a # include listing of hidden/dot files
+
+ls -tr # sort by last modified and reverse so most recent modified is on the bottom
+
+ls -latr
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- touch and rm -->
+        <section>
+          <section>
+            <p>
+How do we create a empty new file?
+            </p>
+            <p>
+How do we remove a file?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+touch FILE
+
+rm FILE
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- mkdir, rmdir, and more rm -->
+        <section>
+          <section>
+            <p>
+How do we create a new directory?
+            </p>
+            <p>
+How do we remove a directory?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+mkdir DIRECTORY
+
+rmdir DIRECTORY
+# or
+rm -r DIRECTORY
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- cat, more and less -->
+        <section>
+          <section>
+            <p>
+How can you view the contents of a file?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+cat FILENAME # dumps everything to the screen
+
+# or use a PAGER to show one page at a time
+more FILENAME
+
+less FILENAME
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- grep and sort -->
+        <section>
+          <section>
+            <p>
+How do we echo a string out to the terminal?
+            </p>
+            <p>
+How do we search a file for a string?
+            </p>
+            <p>
+How do we sort the contents of a file?
+            </p>
+            <p>
+How do we list the unique lines of a file?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# we need to create a file to work on
+echo 'a
+c
+c
+b' > aFile
+
+grep 'c' aFile
+
+sort aFile
+
+sort aFile | uniq
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- pwd and cd-->
+        <section>
+          <section>
+            <p>
+How do print your current directory to the terminal?
+            </p>
+            <p>
+How do you change your current working directory?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+pwd
+
+cd          # changes to your home directory
+cd /tmp     # changes to the /tmp directory with an absolute path
+cd lab02    # changes to the lab02 directory via a relitive path
+cd ../lab03 # also changes to the lab03 via a relitive path
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- cp and mv -->
+        <section>
+          <section>
+            <p>
+How do you copy a file to another location?
+            </p>
+            <p>
+How do you move a file to another location?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# prep files to copy and move
+touch fileA
+touch fileB
+touch fileC
+mkdir aDirectory
+
+cp fileA aDirectory/ # copy into a new file in a directory
+cp fileA aDirectory/fileA # copy into a new file in a directory
+cp fileA fileAb # copy into a new file in the same directory
+
+mv fileB aDirectory # move file into a directory
+mv fileC fileD # move file in current directory /rename
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- hostname -->
+        <section>
+          <section>
+            <p>
+How do you print to the screen the current hostname of the server you are working on?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+hostname # prints full hostname
+hostname -s # prints shortname
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- script -->
+        <section>
+          <section>
+            <p>
+How do you create a file to capture what was typed into and printed from a shell session?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+script FILENAME
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- bzip, tar, and zip -->
+        <section>
+          <section>
+            <p>
+What are some commands that you can use to archive and compress files?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+bzip2 file-name    # compress a file
+bunzip file-name    # uncompress a file
+
+tar cvf archive-name file1 file2    # create an archive
+tar cvfz archive-name file1 file2    # create a compressed archive
+tar tvf archive-name    # list contents of an archive
+tar xvf archive-name    # uncompress an archive
+
+zip archive-name f1 f2    # compress a file
+unzip archive-name    # uncompress a file
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- sudo -->
+        <section>
+          <section>
+            <h3>Bonus!</h3>
+            <p>
+What is a command that you can use to execute another command as a super user?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo vi /etc/hostname
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- END basic commands: review -->
+
+        <!-- regarding VI -->
+        <section>
+          <p>
+Are there any 'vi' questions?
+          </p>
+          <p>
+If not it is a benifit for you to have a cheat-sheet. Have you found one on the internet?
+          </p>
+        </section>
+
+        <section>
+          <p>
+Finish the overview of Lab02. Questions 18 - 20.
+          </p>
+        </section>
+
+        <section>
+          <p>
+Has this review been helpful? Any further questions before we continue?
+          </p>
+          <p>
+Did we make it this far in about 30 minues?
+          </p>
+        </section>
+
+        <!-- groups, users, filesystem permissions -->
+        <section>
+          <section>
+            <h3>groups, users, (filesystems,) and filesystem permissions</h3>
+            <p>
+Ultamately we need to understand groups, users and filestems before we can work with filesystem permissions.
+            </p>
+            <p>
+File permissions decide who can read, write, or execute files or directories.
+            </p>
+            <ul>
+              <li>uid - user id (unique on system)</li>
+              <li>gid - group id (unique on system)</li>
+            </ul>
+          </section>
+
+          <!-- root user -->
+          <section>
+            <h3>root user</h3>
+            <p>
+The root user is a user with (mostly) unrestrictive write to all resources on your computer. This means that it can read, write, and execute all files including ones that are restricted from standard users.
+            </p>
+            <p>
+The root user has a user ID(UID) of 0 and group ID(GID) of 0.
+            </p>
+            <p>
+You can execute commands as the root user or assume the role of the root user.
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo vi /etc/hostname
+
+sudo -i # use sudo to start an interactive shell
+sudo su - # use sudo to switch the user
+su - # switch user with the root users password
+            </code></pre>
+          </section>
+
+          <!-- groups -->
+          <section>
+            <h3>groups</h3>
+            <p>
+Groups are collections of users that can be given collective access or permissions.
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+groupadd # Add a group (low level)
+
+addgroup # Interactive command to add a group
+
+groupmod # Modify a group
+
+groupdel # Delete a group (low level)
+
+deluser # Frindler frontend to groupdel
+            </code></pre>
+          </section>
+
+          <!-- users -->
+          <section>
+            <h3>users</h3>
+            <p>
+Users are able to execute processes and interact with the filesystem where they are given permissions.
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+useradd # Add a user (low level)
+
+adduser # Interactive command to add a user
+
+usermod # Modify a user
+
+userdel # Delete a user (low level)
+
+deluser # Frindler frontend to userdel
+
+
+passwd # change the current user's password
+passwd USERNAME # change USERNAME's password
+
+
+su USER # Switch user. Might require a password.
+
+su - USER # Switch user and source the users environment.
+            </code></pre>
+          </section>
+
+          <!-- modifying groups -->
+          <section>
+            <h3>modifying groups</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+usermod -a -G GROUP USERNAME # add a user to a GROUP
+# or
+gpasswd -a USERNAME GROUP
+
+gpasswd -d USERNAME GROUP # delete a user from a group
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Special Files and Helper Commands</h3>
+            <ul>
+              <li>/etc/passwd - user account information</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+vipw
+              </code></pre>
+              <li>/etc/shadow - password information for users</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+vipw -s
+              </code></pre>
+              <li>/etc/group - group account information</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+vigr
+              </code></pre>
+              <li>/etc/gshadow - password information for groups</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+vigr -s
+              </code></pre>
+            </ul>
+          </section>
+
+          <!-- filesystem -->
+          <section>
+            <h3>Filesystem</h3>
+            <ul>
+              <li>Files and directories are organized in a tree structure.</li>
+              <li>A filesystem can be located on a single drive or across local and remote drives and memory.</li>
+              <li>The top directory is called the root directory and is indicated by a '/'.</li>
+              <li>The root directory contains files and sub-directories.</li>
+              <br />
+              <li><b><font color="yellow">Absolute Path</font></b> - is the path to the desired directory from the root directory '/'</li>
+              <li><b><font color="yellow">Relative Path</font></b> - is the relative path to the desired directory from the current directory</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Special Directories</h3>
+            <ul>
+              <li>.</li>
+              <ul>
+                <li>References the current directory.</li>
+              </ul>
+              <li>..</li>
+              <ul>
+                <li>References the parent directory.</li>
+                <li>The parent of the root directory is the root directory.</li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>A short selection of important directories under '/' the root directory</h3>
+            <ul>
+              <li>/bin - binary executibles for the system</li>
+              <li>/boot - files used for booting are stored here</li>
+              <li>/etc - system-wide configureation files</li>
+              <li>/home - standard users home directries</li>
+              <li>/root - the root users home directory</li>
+              <li>/sbin - binaries restricted to super-users</li>
+              <li>/tmp - a temporary filesystem</li>
+              <li>/var - variable data files</li>
+            </ul>
+            <p>
+See more at <a href="http://refspecs.linuxfoundation.org/fhs.shtml">Filesystem Hierarchy Standard</a>. Link in content.
+            </p>
+          </section>
+
+          <!-- basic filesystem permissions -->
+          <section>
+            <h3>Basic Filesystem Permissions</h3>
+            <p>
+Files and directories have are owned by users and groups. The associated user, group and others can be given different read, write, and execute permissions.
+            </p>
+            <ul>
+              <li>Read(r) - Can you read the contents of a file or directory.</li>
+              <li>Write(w) - Can you change the contests of a file or directory.</li>
+              <li>Execute(x) - Can you execute(run) a file or directory.</li>
+            </ul>
+          </section>
+
+          <section>
+            <p>
+Can be listed using the ls command:
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+$ ls -l foo
+
+drwxr-xr-x 6 linuxadmin linuxamin 204 Jan 13 2015 foo
+
+# foo is a directory
+# foo can be read, written to, and executed by the owner
+# foo can be read, and executed by the group
+# foo can be read, and executed by others
+            </code></pre>
+          </section>
+
+          <section>
+            <p>
+R, W and X can be represented with numbers(octal)
+            </p>
+            <ul>
+              <li>read = 4</li>
+              <li>write = 2</li>
+              <li>execute = 1</li>
+            </ul>
+            <p>
+You then add the numbers together to get the permission for the user, group or other.
+            </p>
+            <p>
+For example:
+            </p>
+            <ul>
+              <li>A directory might be set as 755 so the user has rwx, the group has r-x and other has r-x</li>
+              <li>A file might be set as 644 so the user has rw-, the group has r-- and other has r--</li>
+              <li>0 would mean that there are no permissions.</li>
+            </ul>
+          </section>
+
+          <section>
+            <p>
+You can change using the letter or number representations. Also you can change the user or group ownership.
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Setup test files
+mkdir aDir # 755 owner=linuxadmin group=linuxadmin
+touch aFile # 644 owner=linuxadmin group=linuxadmin
+
+chmod u+x aFile # Add the execute bit for the user on aFile
+chmod o-rwx # Remove the read, write, and execute bits from others on aFile
+chmod u=rwx # Sets the respective bits.
+chmod 644 aFile # Reset the file permissions on aFile
+
+chown root:root aDir # Change user and group ownership to the root user for aDir
+chgrp admin aFile # change the group ownership to the admin group for aFile
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- upcoming weeks -->
+        <section>
+          <section>
+            <h3>upcoming weeks</h3>
+            <ul>
+              <li>week 05</li>
+              <ul>
+                <li>advanced cli tools</li>
+              </ul>
+              <li>week 06</li>
+              <ul>
+                <li>no class</li>
+                <li>read, practice and review</li>
+              </ul>
+              <li>week 07</li>
+              <ul>
+                <li>test 01</li>
+                <ul>
+                  <li>Readings, Labs, Links and Lectures are all fair game.</li>
+                  <li>Will be given on paper.</li>
+                </ul>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- lab -->
+        <section>
+          <h3>The rest of the evening:</h3>
+          <ul>
+            <li>finish lab 02</li>
+            <li>lab 03</li>
+          </ul>
+        </section>

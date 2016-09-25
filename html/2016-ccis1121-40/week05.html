@@ -1,0 +1,425 @@
+        <!-- Welcome Slide -->
+        <section>
+            <h3>Linux Admin 1 - Week 04</h3>
+            <p>
+If you have extra time before class. . .
+            </p>
+            <ul>
+                <li>Reveiw last week's slides</li>
+                <li>Catch up on reading from our book. (Chapters 1 - 7)</li>
+                <li>Finish up Lab 03 from last week</li>
+                <ul>
+                  <li>Due at end of class</li>
+                  <li>Will review commands in the first part of the lecture</li>
+                </ul>
+            </ul>
+        </section>
+
+        <!-- Title Slide -->
+				<section>
+  					<h3>HTC CCIS 1121-40</h3>
+  					<h3>Linux Admin 1</h3>
+  					<h3>Week 05</h3>
+  					<p>
+  						    <small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+  					</p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+                <li>filesystems, users, and groups: review (~30 minutes)</li>
+                <li>advanced command line usage (~30minutes)</li>
+                <li>upcoming weeks</li>
+                <li>finish lab 03</li>
+                <li>lab 04</li>
+            </ul>
+        </section>
+
+        <!-- START filesystems, users, and groups: review -->
+
+        <!-- groups -->
+        <section>
+          <section>
+            <p>
+What commands could you use to create a group?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+groupadd
+
+# or
+
+addgroup
+            </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p>
+What commands could you use to delete a group?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+groupdel
+
+# or
+
+delgroup
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- users -->
+        <section>
+          <section>
+            <p>
+What commands could you use to add a user?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+useradd
+
+# or
+
+adduser
+            </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p>
+What commands could you use to delete a user?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+userdel
+
+# or
+
+deluser
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- modify groups -->
+        <section>
+          <section>
+            <p>
+What command would you use to add a user to an existing group?
+            </p>
+            <p>
+What command would you used to remove a user from an existing group?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+usermod -a -G GROUP USERNAME # add a user to a GROUP
+# or
+gpasswd -a USERNAME GROUP
+
+gpasswd -d USERNAME GROUP # delete a user from a group
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- special files -->
+        <section>
+          <section>
+            <p>
+What two files store information for the users on a system?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+cat /etc/passwd
+
+# and
+
+cat /etc/shadow
+            </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p>
+What two files store information for the groups on a system?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+cat /etc/group
+
+# and
+
+cat /etc/gshadow
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- special directories -->
+        <section>
+          <section>
+            <p>
+What directory name refrences the parent of the current directory?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+cd ..
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- change owner, group and mod of files -->
+        <section>
+          <section>
+            <p>
+What command do you use to change the ownership of a file or directory?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+chown root /tmp/somefile
+
+chown root:root /tmp/somefile
+            </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p>
+What command do you use to change the group ownership of a file or directory?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+chgrp root /tmp/somefile
+            </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p>
+What command do you use to change the mode a a file or a directory?
+            </p>
+          </section>
+
+          <section>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+chmod 755 /tmp/somefile
+
+chmod u+x /tmp/somefile
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- END filesystems, users, and groups: review -->
+
+        <!-- START advanced command line usage -->
+
+        <!-- introduction -->
+        <section>
+          <h3>advanced command line usage</h3>
+          <ul>
+            <li>sudo and su</li>
+            <li>pipes</li>
+            <li>redirection</li>
+            <li>grep</li>
+            <li>sort</li>
+            <li>find</li>
+          </ul>
+        </section>
+
+        <!-- sudo and su -->
+        <section>
+          <section>
+            <h3>sudo and su</h3>
+            <p>
+We covered the root user last week. sudo is important so we will cover some more. Right now we want to focus that we can use sudo to execute commands or to switch users to execute multiple commands as the root user.
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo top
+
+
+sudo -i # use sudo to start an interactive shell
+
+sudo su - # use sudo to switch the user
+
+su - # switch user with the root users password
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Unix applications -->
+        <section>
+          <h3>IO Streams in Unix applications</h3>
+          <p>
+Many of the applicaitons that we use in a Linux/Unix CLI will take in and process data via STDIN and will emit data as STDOUT and STDERR. All three of these can be thought of as streams of Input/Ouput data.
+          </p>
+          <ul>
+            <li>STDIN</li>
+            <ul>
+              <li>Standard In</li>
+            </ul>
+            <li>STDOUT</li>
+            <ul>
+              <li>Standard Output</li>
+            </ul>
+            <li>STDERR</li>
+            <ul>
+              <li>Standard Error</li>
+            </ul>
+          </ul>
+        </section>
+
+        <!-- pipes -->
+        <section>
+          <h3>pipes</h3>
+          <p>
+Pipes allow you to pass data between applications to do more advanced processing.
+          </p>
+          <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# the output of ls -al will be sent as input to more which allows you to view one page at a time.
+ls -al | more
+
+# take the output of ls -al and only display files that contain the string "Jan"
+ls -al | grep Jan
+          </code></pre>
+        </section>
+
+        <!-- redirection -->
+        <section>
+          <h3>redirection</h3>
+          <p>
+Redirection allows for you either feed data from a file into an application or to take data from an application and write it to a file.
+          </p>
+          <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# create or overwrite a file with the output from the ls command.
+ls -al > mylist
+
+# create or append to a file with the output from the ls command.
+ls -al >> myList
+
+# sort contents of file list.txt
+sort < list.txt
+          </code></pre>
+        </section>
+
+        <!-- grep -->
+        <section>
+          <h3>grep</h3>
+          <p>
+grep allows you to print lines from a file or a datastream that match a string.
+          </p>
+          <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# find all the lines in passwd file that include your username
+grep yourusername /etc/passwd
+
+# find the root user in /etc/passwd and /etc/group
+grep root /etc/passwd /etc/group
+
+# find the users in /etc/passwd that are not root.
+grep -v root /etc/passwd
+
+# take the output from 'cat /etc/passwd' and match lines with 'root'.
+cat /etc/passwd | grep root
+          </code></pre>
+        </section>
+
+        <!-- sort -->
+        <section>
+          <h3>sort</h3>
+          <p>
+sort allows for you to organize data.
+          </p>
+          <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# sort the output of 'ls -tr' command in alphabetical order.
+ls -tr | sort
+
+# sort the output of 'ls -tr' command in reverse alphabetical order.
+ls -tr | sort -r
+
+# Sort the long output of the ls command based on the filename(nineth key).
+ls -latr | sort -k 9
+          </code></pre>
+        </section>
+
+        <!-- find -->
+        <section>
+          <h3>find</h3>
+          <p>
+Find files based on your criteria.
+          </p>
+          <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# find all files and directories under / named passwd
+find / -name passwd
+
+# find all files and directories under /home owned by the user linuxadmin
+find /home -user linuxadmin
+
+# find all directories in / owned by the user linuxadmin
+find / -user linuxadmin -type d
+
+# find all files in / that belong to the root user and are named list.txt.
+find / -user root -type f -name list.txt
+          </code></pre>
+        </section>
+
+        <!-- END advanced command line usage -->
+
+        <!-- upcoming weeks -->
+        <section>
+          <section>
+            <h3>upcoming weeks</h3>
+            <ul>
+              <li>week 06</li>
+              <ul>
+                <li>no class</li>
+                <li>read, practice and review</li>
+                <li>President's Day</li>
+              </ul>
+              <li>week 07</li>
+              <ul>
+                <li>test 01</li>
+                <ul>
+                  <li>Readings, Labs, Links and Lectures are all fair game.</li>
+                  <li>Will be given on paper.</li>
+                </ul>
+              </ul>
+              <li>week 08</li>
+              <ul>
+                <li>system startup, shutdown, and boot loaders
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- lab -->
+        <section>
+          <h3>The rest of the evening:</h3>
+          <ul>
+            <li>finish lab 03</li>
+            <li>lab 04</li>
+          </ul>
+        </section>

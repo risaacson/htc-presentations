@@ -1,0 +1,352 @@
+        <!-- Welcome Slide -->
+        <section>
+            <h3>Week 02 of Linux Admin 2</h3>
+            <ul>
+                <li>Are you in the right place? Grab your disk and boot up.</li>
+                <li>These Slides: <a href="https://presentations.recycledthoughts.org/html/2016-ccis2122-40/week02.html">https://presentations.recycledthoughts.org/html/2016-ccis2122-40/week02.html</a></li>
+                <li>Cut and Paste commands from <a href="https://gist.github.com/risaacson/4cc7016bd5fc388ed8a5bf240911f953">CCIS 2122-40 Gist</a></li>
+                <li>Run through the commands in the centos7-setup.sh file.</li>
+            </ul>
+        </section>
+
+                <!-- Title Slide -->
+				<section>
+  					<h3>HTC CCIS 2122-40</h3>
+  					<h3>Linux Admin 2</h3>
+  					<h3>Week 02</h3>
+  					<p>
+  						    <small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+  					</p>
+            <p>
+              <small><a href="https://instructor.recycledthoughts.org/">instructor.recycledthoughts.org</a></small>
+            </p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+              <li>Last Week in Review</li>
+              <li>Linux Admin 1 Review</li>
+              <ul>
+                <li>Lab 01 Part 1</li>
+              </ul>
+              <li>Re-Introduction to Virtualization</li>
+              <li>Introduction to Vagrant</li>
+              <ul>
+                <li>Lab 01 Part 2</li>
+              </ul>
+            </ul>
+        </section>
+
+        <!-- Last Week in Review -->
+        <section>
+          <section>
+            <h3>Last Week in Review - We did. . .</h3>
+            <ul>
+              <li>introductions</li>
+              <li>syllabus</li>
+              <li>install your workstation</li>
+              <li>review - linux admin 1</li>
+              <ul>
+                <li>do-over tonight with lab work!</li>
+              </ul>
+              <li>introduction to client-server and network services</li>
+              <ul>
+                <li>this is our semester</li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Linux Admin 1 Review -->
+        <section>
+          <section>
+            <h3>Linux Admin 1 Review Do-Over</h3>
+            <ul>
+              <li>We should have gone more in-depth with examples last week.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Linux Admin 1 - What we covered</h3>
+            <ul>
+              <li>Understanding Workstation Installation - Ubuntu</li>
+              <li>Navagation of the BASH shell(CLI)</li>
+              <li>User and Group management via CLI</li>
+              <li>Processes, scheduled jobs, and Kernels</li>
+              <li>Software Compliation, Packages and Installation</li>
+              <li>Intro to networking, system services and a webserver</li>
+              <li>Basic Shell Scripting</li>
+            </ul>
+            <br />
+            <br />
+            <h4>So what do you need to remember now?</h4>
+          </section>
+
+          <section>
+            <h3>Linux Admin 1 - You need to remeber:</h3>
+            <ul>
+              <li>Navigation with Bash</li>
+              <li>Command Composition</li>
+              <li>Editing Files</li>
+              <li>Package Installation</li>
+              <li>Basic Networking</li>
+              <li>Basic Shell Scripting</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Navigation with Bash</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+mkdir foo # Create Directory
+cd; cd foo; cd ..; cd ~; cd /tmp # Navigate Directories
+mkdir bar; rmdir bar # Make and Remove Directories
+touch foobar; rm foobar # Make and Remove Files
+mkdir barfoo; touch barfoo/bazfoo; rm -r barfoo
+cp SRC DST; mv SRC DST # Copy and Move from a source
+                       # file/directory to a destination
+ps -fu USER; ps auxww; top # Look at processes
+            </code></pre>
+            <h4>resources:</h4>
+            <ul>
+              <li><a href="http://www.pathname.com/fhs/">Filesystem Hierarchy Standard</a></li>
+              <li><a href="https://www.gnu.org/software/bash/manual/bash.html">Bash Reference Manual</a></li>
+              <li><a href="http://johnstowers.co.nz/pages/bash-cheat-sheet.html">Bash Cheat Sheet</a></li>
+              <li><a href="https://gist.github.com/LeCoupa/122b12050f5fb267e75f">Bash Cheat Sheet</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Command Composition</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+cat /etc/passwd | grep root
+ps auxwww | grep apache | grep -v grep
+cat /var/log/messages | grep ERROR > /tmp/ERRORS.out
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Editing Files</h3>
+            <ul>
+              <li>Command Mode</li>
+              <li>Insert Mode</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+vi FILENAME
+i a
+yy dd p P x
+:w FILENAME
+:wq
+:q
+            </code></pre>
+            <h4>resources:</h4>
+            <ul>
+              <li><a href="http://www.vim.org/docs.php">Vim Documentation</a></li>
+              <li><a href="http://ryanstutorials.net/linuxtutorial/cheatsheetvi.php">Vim Cheat Sheet</a></li>
+              <li><a href="http://johnstowers.co.nz/pages/vim-cheat-sheet.html">Vim Cheat Sheet</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Package Installation</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+yum update # Install updates for installed software
+yum search httpd # Search for packages containing httpd
+yum install httpd # Install Apache Httpd
+yum remove httpd # Remove Apache Httpd
+yum list # List install packages
+
+# yum abstracts rpm interface
+            </code></pre>
+            <h4>resources:</h4>
+            <ul>
+              <li><a href="https://www.centos.org/docs/5/html/yum/">Managing Software with yum</a></li>
+              <li><a href="https://www.centos.org/docs/5/html/5.1/Deployment_Guide/s1-yum-useful-commands.html">CentOS Yum Examples</a></li>
+              <li><a href="http://www.rpm.org/wiki/Docs">RPM Documentation</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Basic Networking</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+ip addr; ifconfig -a # Get interface information
+ip route; netstat -rn # Get routing information
+cat /etc/resolv.conf # DNS Nameservers
+cat /etc/sysconfig/network-scripts/ifcfg-INTERFACE # Interface configuration
+cat /etc/hosts
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Basic Shell Scripting</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+
+name=$1
+echo "Hello, ${name}!"
+            </code></pre>
+            <h4>resources:</h4>
+            <ul>
+              <li><a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/index.html"></a>Bash Guide for Beginners</li>
+              <li><a href="http://tldp.org/LDP/abs/html/">Advanced Bash-Scripting Guide</a></li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Lab 01 Part 1 -->
+        <section>
+          <section>
+            <h3>Lab 01 Part 1</h3>
+            <p>
+Take this time to work throught the lab which is in the content for this week. Download the lab file and follow the instructions. You will end up with a set of files that you will upload into the drop box for Lab 01.
+            </p>
+            <p>
+Feel free to work with a neighbor or search the internet for answers. Please do not just enter the answer but execute the commands on your workstation.
+            </p>
+            <p>
+After ~45 minutes or when the class has completed the excercises we will review the solutions and have time for questions.
+            </p>
+          </section>
+        </section>
+
+        <!-- Re-Introduction to Virtualization -->
+        <section>
+          <section>
+            <h3>Virtualization</h3>
+            <p>
+Carving up larger compute and storage into smaller logical systems. This way we can have more servers to build out systems on. Software is logically seporated from the host operating system.
+            </p>
+            <ul>
+              <li>Creation of Virtual Machines (VMs)</li>
+              <li>Emulator vs. Hypervisor</li>
+              <li>Full Virt vs. Para Virt vs. OS Level</li>
+            </ul>
+            <br />
+            <br />
+            <h4>resources:</h4>
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Virtualization">Virtualization (Wikipedia)</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Full Virtualization (Software/Hardware Assisted)</h3>
+            <ul>
+              <li>Simulation of systems hardware so an operating system and software run unmodified</li>
+              <li>May be assisted by hardware</li>
+              <ul>
+                <li>Parallels <a href="https://www.parallels.com/">site</a></li>
+                <li>VirtualBox <a href="https://www.virtualbox.org/">site</a></li>
+                <li>VMware <a href="https://www.vmware.com/">site</a></li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Paravirtualization</h3>
+            <ul>
+              <li>Some but not all of the systems hardware is emulated</li>
+              <li>As a result software may need to be modified to run</li>
+              <ul>
+                <li>Xen <a href="https://www.xenproject.org/">site</a></li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>OS Level Virtualization</h3>
+            <ul>
+              <li>Not really virtualization as no simulation is taking place</li>
+              <li>Process and resource isolation managed by software working with the kernel</li>
+              <ul>
+                <li>FreeBSD Jails <a href="https://www.freebsd.org/doc/handbook/jails.html">site</a></li>
+                <li>LXC/Docker <a href="https://linuxcontainers.org/">site</a>/<a href="https://www.docker.com/">site</a></li>
+                <li>Solaris Containers/Zones</li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Introduction to Vagrant -->
+        <section>
+          <section>
+            <h3>Introduction to Vagrant</h3>
+            <ul>
+              <li>Allows us to start automating virtual machines</li>
+              <li>Configured through a Vagrantfile</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+  config.vm.hostname = "centos7.box"
+end
+              </code></pre>
+              <li>Easy commands to remember for management</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+vagrant up
+vagrant ssh
+vagrant destroy
+              </code></pre>
+            </ul>
+            <h4>resources:</h4>
+            <ul>
+              <li><a href="https://www.vagrantup.com/">Vagrant</a></li>
+              <li><a href="https://atlas.hashicorp.com/boxes/search">Vagrant Boxes (for lab)</a></li>
+              <li><a href="http://www.vagrantbox.es/">Vagrant Boxes</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>What does Vagrant get us?</h3>
+            <ul>
+              <li>Allows us to create the same VM consistantly</li>
+              <li>Allows us to incrementally develop systems</li>
+              <li>Super quick to create and destroy.</li>
+              <br />
+              <li>We will use Virtualbox as our backing hypervisor</li>
+              <br />
+              <li>Next class we will add Ansible to automate customizing the VMs</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Vagrant Installation</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo -i
+cd /etc/yum/yum.repos.d/; wget http://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo
+yum update -y
+yum install -y binutils qt gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel dkms
+yum install -y VirtualBox-5.1
+cd
+wget 'http://download.virtualbox.org/virtualbox/5.1.4/Oracle_VM_VirtualBox_Extension_Pack-5.1.4-110228.vbox-extpack'
+VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-5.1.4-110228.vbox-extpack --replace
+wget 'https://releases.hashicorp.com/vagrant/1.8.5/vagrant_1.8.5_x86_64.rpm'
+yum localinstall vagrant_1.8.5_x86_64.rpm
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Lab 01 Part 2 -->
+        <section>
+          <h3>Lab 01 Part 2</h3>
+          <p>
+Take this time to work throught the lab which is in the content for this week. Download the lab file and follow the instructions. You will end up with a set of files that you will upload into the drop box for Lab 01.
+          </p>
+        </section>
+
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <section>
+            <h3>Rest of the evening:</h3>
+            <ul>
+                <li>Get used to your workstation</li>
+            </ul>
+            <h3>Next Weeks:</h3>
+            <ul>
+              <li>Week 03: No Class</li>
+              <li>Week 04: Intro to Automation: Ansible and Vagrant</li>
+              <li>Week 05: SSH, Server Instances</li>
+            </ul>
+        </section>

@@ -1,0 +1,256 @@
+        <!-- Welcome Slide -->
+        <section>
+            <h3>Linux Admin 1 - Week 15</h3>
+            <h4>Readings for this Week</h4>
+            <ul>
+              <li>Programming the Bourne Again Shell(bash)</li>
+              <ul>
+                <li>Chapter 28 : pg 1003</li>
+              </ul>
+              <li></li>
+              <ul>
+                <li><a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/index.html">Bash Guide for Beginners(http://tldp.org/LDP/Bash-Beginners-Guide/html/index.html)</a></li>
+                <li><a href="http://tldp.org/LDP/abs/html/index.html">Advanced Bash-Scripting Guide(http://tldp.org/LDP/abs/html/index.html)</a></li>
+              </ul>
+            </ul>
+        </section>
+
+        <!-- Title Slide -->
+				<section>
+  					<h3>HTC CCIS 1121-40</h3>
+  					<h3>Linux Admin 1</h3>
+  					<h3>Week 15</h3>
+  					<p>
+  						    <small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+  					</p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+                <li>Shell Scripting Pt. 1</li>
+                <li>upcoming weeks</li>
+                <li>lab 10</li>
+            </ul>
+        </section>
+
+        <!-- Intro Slide -->
+        <section>
+          <section>
+            <h3>Shell Scripting Pt. 1</h3>
+            <ul>
+              <li>Shell Scripting Basics</li>
+              <li>Variables</li>
+              <li>Math Operatings</li>
+              <li>Reading User Input</li>
+              <li>if Statements</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- shell scripting basics -->
+        <section>
+          <section>
+            <h3>Shell Scripting Basics</h3>
+            <p>
+Create a file named hello.sh.
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+echo "Hello, World"
+            </code></pre>
+            <p>
+Set the Execute Bit
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+chmod +x hello.sh
+            </code></pre>
+            <p>
+Execute the script.
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+./hello.sh
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Shell Scripting Basics Continued...File</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+            </code></pre>
+            <p>
+If the execute bit it set on a file and you try to run it bash will look at the first file to figure what to execute it with. Above we have told bash to execute our script with bash.
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+echo "Hello, World"
+            </code></pre>
+            <p>
+The echo command takes a string and writes it to output.
+            </p>
+          </section>
+
+          <section>
+            <h3>Shell Scripting Basics Continued...File</h3>
+            <ul>
+              <li>What is a script?</li>
+              <ul>
+                <li>text file</li>
+                <li>Starts with a "#!" line</li>
+                <li>Has the execute bit set</li>
+                <li>Follow the syntax of the scripting language you have chosen</li>
+              </ul>
+              <li>Why use a script?</li>
+              <ul>
+                <li>If you run it twice you should automate it.</li>
+                <li>It allows you to save and easialy recall logic.</li>
+              </ul>
+              <p>
+Avoid naming the same as commands built on the sytem. Also commands work the same as they work on the command line. Case matters.
+              </p>
+            </ul>
+          </section>
+        </section>
+
+        <!-- variables -->
+        <section>
+          <section>
+            <h3>Variables</h3>
+            <p>
+Variables allow you to store a value for later usage.
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+
+MESSAGE='Hello, World'
+aDATE=$( date "+%Y%m%d%H%M" )
+
+echo ${MESSAGE}
+echo "A Date: ${aDate}"
+            </code></pre>
+            <ul>
+              <li>Quote Strings. Single if you have no variable replacement. Double if you have variable in the string.</li>
+              <li>Don't have a spaces between the variable the equals and the value you are setting.</li>
+              <li>Set variables from a sub-command by either using backticks or $( COMMAND )</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- math operations -->
+        <section>
+          <section>
+            <h3>Math Operations</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+
+x=5
+y=10
+
+sum=$(( x + y ))
+
+echo "${x} + ${y} = ${sum}"
+            </code></pre>
+            <p>
+Execute a Math Operation inside $(( )).
+            </p>
+            <ul>
+              <li>+ = plus, - = minus</li>
+              <li>* = multiply,  / = divide</li>
+              <li>** = exponent, % = modulo/remainder</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- reading user input -->
+        <section>
+          <section>
+            <h3>Reading User Input</h3>
+            <ul>
+              <li>Command-Line Arguments</li>
+              <li>'read' prompt</li>
+            </ul>
+            <p>
+rectangle.sh
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+
+height=$1
+width=$2
+
+echo "What color should the rectangle be?"
+read color
+
+echo "${height} x ${width} and ${color}"
+            </code></pre>
+            <p>
+And execute
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+./rectange.sh 3 7
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- if statements -->
+        <section>
+          <section>
+            <h3>if Statements: conditionals/tests</h3>
+            <p>
+If statements provide scripts with the ability to have logic. If this, then do that.
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+
+echo "Type \"yes\" or \"no\""
+read yesno
+
+if [ "${yesno}" -eq "yes" ]; then
+  echo "You chose yes."
+else if [ "${yesno}" -eq "no" ]; then
+  echo "You chose no."
+else
+  echo "Please \"yes\" or \"no\""
+fi
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>More Conditionals/Tests</h3>
+            <p>
+Your best resource for other conditionals are the above links to the Linux Documentation Project.
+            </p>
+            <ul>
+              <li><a href="http://tldp.org/LDP/abs/html/tests.html">http://tldp.org/LDP/abs/html/tests.html</a></li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- upcoming weeks -->
+        <section>
+          <section>
+            <h3>upcoming weeks</h3>
+            <ul>
+              <li>week 16</li>
+              <ul>
+                <li>Shell Scripting Pt. 2</li>
+              </ul>
+              <li>week 17</li>
+              <ul>
+                <li>System Security, System Integrity, and Encryption</li>
+              </ul>
+              <li>week 18</li>
+              <ul>
+                <li>Final Test</li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- lab -->
+        <section>
+          <h3>The rest of the evening:</h3>
+          <ul>
+            <li>lab 10</li>
+          </ul>
+        </section>

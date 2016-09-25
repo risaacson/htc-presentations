@@ -1,0 +1,333 @@
+        <!-- Welcome Slide -->
+        <section>
+            <h3>Welcome Back to Linux Admin 1</h3>
+            <ul>
+                <li>Put your drive in your computer.</li>
+                <li>Log into your workstation.</li>
+                <li>Open up the terminal application.</li>
+                <br />
+                <li>If you missed week01</li>
+                <ul>
+                  <li>Ask me for lab01 to insall your workstation.</li>
+                </ul>
+            </ul>
+        </section>
+
+        <!-- Title Slide -->
+				<section>
+  					<h3>HTC CCIS 1121-40</h3>
+  					<h3>Linux Admin 1</h3>
+  					<h3>Week 03</h3>
+  					<p>
+  						    <small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+  					</p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+                <li>first login commands</li>
+                <li>basic commands</li>
+                <li>basic vi</li>
+                <li>upcoming weeks</li>
+                <li>lab 02</li>
+            </ul>
+        </section>
+
+        <!-- first commands -->
+        <section>
+          <section>
+            <h3>First Commands</h3>
+            <p>
+What follows is a list of commands that I might use when first logging into a system.
+            </p>
+            <p>
+These are a preview of what we will end up talking about this semester.
+            </p>
+          </section>
+
+          <section>
+            <h3>First Commands. . .</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+last    # last people to log in
+
+who am i    # who are you logged in as
+
+uptime    # how long has the system been up and what is the load
+
+dmesg    # display system messages
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>First Commands. . .</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+uname -a    # list kernel information
+
+cat /etc/lsb-release    # list OS information
+
+cat /proc/cpuinfo    # list cpu information
+
+cat /proc/meminfo    # list memory information
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>First Commands. . .</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+ps auxwww    # list all processes with full commands
+
+top    # show an auto-updating list of top processes
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>First Commands. . .</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+mount    # list mounted filesystems
+
+df -h    # list filesystem information
+
+du -sk * | sort -n    # sort the size of the local filesystems
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>First Commands. . .</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+ifconfig -a    # list interfaces and their configuration
+(or)
+ip addr
+
+lsof -i -P    # list ports that the server is listening on
+sudo apt-get install lsof    # If you need to install lsof
+            </code></pre>
+          </section>
+      </section>
+
+        <!-- basic commands -->
+        <section>
+          <section>
+            <h3>Basic Commands</h3>
+            <p>
+When start the terminal application you are given access to a shell. The default shell for most Linux distributions is `bash`.
+            </p>
+            <p>
+The shell accepts commands from the user and makes system calls for execution. Many commands are installed when the system is intalled. If something additional is needed you can install it later.
+            </p>
+            <p>
+&lt;PATH/&gt;COMMAND &lt;SWITCHES&gt; &lt;ARGUMENTS&gt;
+            </p>
+            <p>
+Linux filesystems are case-sensitive by default.
+            </p>
+          </section>
+
+          <section>
+            <h3>Basic Commands. . .</h3>
+            <p>
+If want to know how the commands work.
+            </p>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+man &lt;COMMAND&gt;    # get manual page for a command
+
+man rm
+
+# q (quits), SPACE (forward page), b (back page)
+
+info &lt;COMMAND&gt;    # get the info page for a command
+
+info ip
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Basic Commands. . .</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+touch    # create a new empty file
+
+ls    # ls list what is inside the current working directory
+
+rm    # remove a file
+
+more    # view a text file one page at a time using space to page forward
+
+less    # similar to more
+
+hostname    # display the name of the system you are working on
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Basic Commands. . .</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+cp source-file destination-file    # copy a file
+mv existing-filename new-filename    # move/rename a file
+
+lpr file-name    # print file
+
+mkdir directory-name    # create a new directory
+rmdir directory-name    # delete a directory
+pwd    # print your present working directory
+cd path   # change directory
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Basic Commands. . .</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+cat file-name    # display file contents
+
+grep 'string' file-name    # find lines that contain 'string'
+
+sort file-name    # sort file contents
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Basic Commands. . .</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+uniq file-name    # shows file contents without duplicates
+
+echo 'text'    # display 'text' on the screen
+
+script    # records a login session
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Basic Commands. . .</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+bzip2 file-name    # compress a file
+bunzip file-name    # uncompress a file
+
+tar cvf archive-name file1 file2    # create an archive
+tar cvfz archive-name file1 file2    # create a compressed archive
+tar tvf archive-name    # list contents of an archive
+tar xvf archive-name    # uncompress an archive
+
+zip archive-name f1 f2    # compress a file
+unzip archive-name    # uncompress a file
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- basic vi -->
+        <section>
+            <section>
+                <h3>Basic Editor Usage</h3>
+            </section>
+
+            <section>
+                <h3>Editors(a limited list):</h3>
+                <ul>
+                    <li>vi (one of the standards)</li>
+                    <li>emacs (one of the standards)(we are not covering this)</li>
+                    <li>nano (super basic)(we are not covering this)</li>
+                    <li>GUI Based Editor(we are not covering these)</li>
+                    <ul>
+                      <li>gedit</li>
+                      <li>kedit</li>
+                    </ul>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h3>vi</h3>
+                <p>
+Vi has two modes insertion mode and command mode. When you enter the editor you are in command mode. You use insertion mode to make changes. After you are done with insertion mode you use [ESC] to return to command mode.
+                </p>
+                <p>
+Find a cheat sheet that you like, print it out, and keep it next to your computer until you use the commands enough to remember them.
+                </p>
+                <p>
+Start by typing 'vi FILENAME'
+                </p>
+            </section>
+
+            <section>
+                <h3>vi - basic commands</h3>
+                <ul>
+                    <li>Quitting and Saving</li>
+                    <ul>
+                        <li>:q -- exit if no changes have been made</li>
+                        <li>:wq or :x -- exit saving(writing) changes</li>
+                        <li>:q! -- exit not saving changes</li>
+                    </ul>
+                    <li>Moving Around</li>
+                    <ul>
+                        <li>up arrow or 'k' -- move up</li>
+                        <li>down arrow or 'j' -- move down</li>
+                        <li>left arrow or 'h' -- move left</li>
+                        <li>right arrow or 'l' -- move right</li>
+                    </ul>
+                </ul>
+            </section>
+
+            <section>
+                <h3>vi - basic commands. . .</h3>
+                <ul>
+                    <li>Inserting Text</li>
+                    <ul>
+                        <li>i -- insert before cursor</li>
+                        <li>a -- append after cursor</li>
+                        <li>o -- append in a new line after the current line</li>
+                        <li>r -- replace a character</li>
+                        <li>cw -- change word</li>
+                    </ul>
+                    <li>Deleting Text</li>
+                    <ul>
+                        <li>x -- delete a character to the right of the cursor</li>
+                        <li>dd -- delete the current line</li>
+                    </ul>
+                </ul>
+            </section>
+
+            <section>
+                <h3>vi - basic commands. . .</h3>
+                <ul>
+                    <li>Yanking and Putting Text</li>
+                    <ul>
+                        <li>yy -- yank the current line (copy)</li>
+                        <li>dd -- delete the current line (cut)</li>
+                        <li>p -- append after the position or after the line</li>
+                        <li>P -- insert before the position or before the line</li>
+                    </ul>
+                    <li>Searching</li>
+                    <ul>
+                        <li>/STRING -- search for the first instance after cursor of a STRING (wraps)</li>
+                        <li>n -- search again for the next instance</li>
+                        <li>N -- search again for the previous instance</li>
+                    </ul>
+                </ul>
+            </section>
+        </section>
+
+        <!-- upcoming weeks -->
+        <section>
+          <section>
+            <h3>upcoming weeks</h3>
+            <ul>
+              <li>week 04</li>
+              <ul>
+                <li>users, groups, file permissions, directory structure</li>
+              </ul>
+              <li>week 05</li>
+              <ul>
+                <li>advanced cli tools</li>
+              </ul>
+              <li>week 06</li>
+              <ul>
+                <li>no class</li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- lab -->
+        <section>
+          <h3>lab 02</h3>
+        </section>

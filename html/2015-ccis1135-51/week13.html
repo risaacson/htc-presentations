@@ -1,0 +1,387 @@
+                <section>
+                    <p>
+No observation tonight.
+                    </p>
+                    <p>
+Lecture instead.
+                    </p>
+                    <p>
+Also we are bumping the fourth quiz and fourth discussion to next week. We are also dumping the fifth quiz and discussion to make room for talking security.
+                    </p>
+                    <p>
+Please complete class survey.
+                    </p>
+                </section>
+
+                <!-- Title Slide -->
+				<section>
+					<h3>HTC CCIS 1135-51</h3>
+					<h3>Desktop Linux</h3>
+					<h3>Week 13 of 17 - Moar CLI: Basic Admin</h3>
+					<p>
+						<small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+					</p>
+				</section>
+
+                <!-- agenda Slide -->
+                <section>
+                    <h3>agenda</h3>
+                    <ul>
+                        <!-- Lecture content -->
+                        <li>Moar CLI: Basic Administration</li>
+                        <!-- Upcoming content -->
+                        <li>What to expect in the next weeks?</li>
+                        <!-- The rest of the evening -->
+                        <li>Lab 12</li>
+                    </ul>
+                </section>
+
+                <!-- Lecture content slides -->
+                <section>
+                    <section>
+                        <h3>Moar CLI: Basic Administration</h3>
+                        <ul>
+                            <li>sudo</li>
+                            <li>users and groups</li>
+                            <li>network: interfaces, routes, nameservers</li>
+                            <li>processes</li>
+                            <li>archives</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>sudo:</h3>
+                        <blockquote cite="https://en.wikipedia.org/wiki/Sudo">
+. . .is a program for Unix-like computer operating systems that allows users to run programs with the security privileges of another user, by default the superuser. -Wikipedia
+                        </blockquote>
+                        <p>
+If your user has administrative permissions you can use sudo to escalate your privileges to run commands you otherwise wouldn't be allowed to run.
+                        </p>
+                    </section>
+
+                    <section>
+                        <img src="https://imgs.xkcd.com/comics/sandwich.png"/>
+                        <br />
+                        <p>
+                            <a href="https://xkcd.com/149/">XKCD #149</a> &#169; Randall Munroe
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>commands:</h3>
+                        <ul>
+                            <li>sudo COMMAND</li>
+                            <ul>
+                                <li>Attempt to escalate the privileges when executing COMMMAND.</li>
+                            </ul>
+                            <li>sudo -i</li>
+                            <ul>
+                                <li>Run the default shell as the root user.</li>
+                            </ul>
+                            <br />
+                            <li>su - USERNAME</li>
+                            <ul>
+                                <li>Get a login shell for another user.</li>
+                                <li>You will need the users password.</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <p>
+For the rest of the commands to run them as root use the sudo command.
+                        </p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>users and groups:</h3>
+                        <p>
+Commands to get more information of and to manage users and groups.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>commands:</h3>
+                        <ul>
+                            <li>who</li>
+                            <ul>
+                                <li>list all of the users logged into the system</li>
+                            </ul>
+                            <li>who am i</li>
+                            <ul>
+                                <li>list which user you are</li>
+                            </ul>
+                            <br />
+                            <li>id</li>
+                            <ul>
+                                <li>print user ID; group memberships and IDs</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>commands: continued</h3>
+                        <ul>
+                            <li>addgroup GROUPNAME</li>
+                            <ul>
+                                <li>Create a new group.</li>
+                            </ul>
+                            <li>deluser GROUPNAME</li>
+                            <ul>
+                                <li>Delete an existing group.</li>
+                            </ul>
+                            <br />
+                            <li>adduser USERNAME</li>
+                            <ul>
+                                <li>Create a new user.</li>
+                            </ul>
+                            <li>deluser USERNAME</li>
+                            <ul>
+                                <li>Delete an existing user.</li>
+                            </ul>
+                            <br />
+                            <li>usermod -aG GROUPNAME USERNAME</li>
+                            <ul>
+                                <li>Add a user to a group.</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>files:</h3>
+                        <ul>
+                            <li>cat /etc/passwd</li>
+                            <ul>
+                                <li>Where the users are stored</li>
+                            </ul>
+                            <li>sudo cat /etc/shadow</li>
+                            <ul>
+                                <li>The file where users encrypted paswords are stored</li>
+                            </ul>
+                            <br />
+                            <li>/etc/group</li>
+                            <ul>
+                                <li>Groups and group memebership</li>
+                            </ul>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>network: interfaces, routes, nameservers:</h3>
+                        <p>
+Common commands used in basic network troubleshooting.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>commands - interfaces:</h3>
+                        <ul>
+                            <li>ifconfig -a</li>
+                            <ul>
+                                <li>List all of the network interfaces</li>
+                            </ul>
+                            <li>ifconfig INTERFACE</li>
+                            <ul>
+                                <li>List a single network interface</li>
+                            </ul>
+                            <br />
+                            <li>ip addr</li>
+                            <ul>
+                                <li>Another way to list the interfaces</li>
+                            </ul>
+                            <br />
+                            <li>nmcli dev list iface INTERFACE | grep IP4.ADDRESS</li>
+                            <ul>
+                                <li>A third way to get interface information</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>commands - routes:</h3>
+                        <ul>
+                            <li>netstat -rn</li>
+                            <ul>
+                                <li>List route information</li>
+                            </ul>
+                            <br />
+                            <li>ip route</li>
+                            <ul>
+                                <li>Also list route information</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>commands - nameservers:</h3>
+                        <ul>
+                            <li>cat /etc/resolv.conf</li>
+                            <ul>
+                                <li>List nameservers</li>
+                            </ul>
+                            <br />
+                            <li>nmcli dev list iface INTERFACE | grep IP4.D</li>
+                            <ul>
+                                <li>Also list nameservers</li>
+                            </ul>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>processes:</h3>
+                        <p>
+Listing and communicating with processes.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>commands:</h3>
+                        <ul>
+                            <li>ps</li>
+                            <ul>
+                                <li>A short list of tasks being run by the current shell including PID</li>
+                            </ul>
+                            <li>ps -f</li>
+                            <ul>
+                                <li>An expanded view including timing and the PPID</li>
+                            </ul>
+                            <li>ps -fu root</li>
+                            <li>ps -fu 1001</li>
+                            <ul>
+                                <li>List all process for a user</li>
+                            </ul>
+                            <li>ps auxwww</li>
+                            <ul>
+                                <li>List all process with the expanded command-line</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>commands: continued</h3>
+                        <ul>
+                            <li>kill PID</li>
+                            <li>kill -15 PID</li>
+                            <ul>
+                                <li>Send the process a SIGTERM asking the process to quit.</li>
+                                <li>Some programs will try to exit gracefully with unlikely data loss</li>
+                            </ul>
+                            <li>kill -3 PID</li>
+                            <ul>
+                                <li>Send the process a SIGQUIT asking the process to quit and perform a core dump</li>
+
+                            </ul>
+                            <li>kill -9</li>
+                            <ul>
+                                <li>Send the process a SIGKILL forcing the application to immediate exit</li>
+                                <li>Likely data loss.</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>commands: continued</h3>
+                        <ul>
+                            <li>pgrep COMMAND</li>
+                            <ul>
+                                <li>List matching COMMANDs that are running</li>
+                            </ul>
+                            <li>pgrep COMMAND</li>
+                            <ul>
+                                <li>List matching COMMANDs that are running and list the command name</li>
+                            </ul>
+                            <li>pkill COMMAND</li>
+                            <ul>
+                                <li>Search for and send COMMANDs a SIGTERM</li>
+                            </ul>
+                            <li>pkill -9 COMMAND</li>
+                            <ul>
+                                <li>Search for and send COMMANDs a SIGKILL</li>
+                            </ul>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>archives:</h3>
+                        <p>
+For backups or just saving space.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>commands:</h3>
+                        <ul>
+                            <li>tar cvf foo.tar PATH/FILES</li>
+                            <ul>
+                                <li>archive files or a path</li>
+                            </ul>
+                            <li>tar cvfz foo.gz PATH/FILES</li>
+                            <ul>
+                                <li>archive and compress files or a path</li>
+                            </ul>
+                            <li>tar xvfz foo.tar</li>
+                            <ul>
+                                <li>unarchive files and directories from an archive</li>
+                            </ul>
+                            <li>tar xvfz foo.gz</li>
+                            <ul>
+                                <li>unarchive and decompress files and directories from an archive</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>commands: continued</h3>
+                        <ul>
+                            <li>zip -r foo PATH/FILES</li>
+                            <ul>
+                                <li>Compress files/directories</li>
+                            </ul>
+                            <li>unzip foo.zip</li>
+                            <ul>
+                                <li>Uncompress files/directories</li>
+                            </ul>
+                        </ul>
+                    </section>
+                </section>
+
+                <!-- What to expect Slide -->
+                <section>
+                    <section>
+                        <h3>What to expect in the next weeks?</h3>
+                    </section>
+
+                    <section>
+                        <h3>Weeks 14 - 17</h3>
+                        <ul>
+                            <li>Week 14 - No Class but Quiz 04, Discussion 04 </li>
+                            <li>Week 15 - Basic Security, Lab 13</li>
+                            <ul>
+                                <li>Anti-Virus</li>
+                                <li>Disk Encryption</li>
+                                <li>Firewalls</li>
+                                <li>Passwords</li>
+                            </ul>
+                            <li>Week 16 - Review - Lab 14</li>
+                            <li>Week 17 - Final Exam</li>
+                        </ul>
+                    </section>
+
+                </section>
+
+                <section>
+                    <h3>Rest of the evening:</h3>
+                    <ul>
+                        <li>Lab 12</li>
+                    </ul>
+                </section>
