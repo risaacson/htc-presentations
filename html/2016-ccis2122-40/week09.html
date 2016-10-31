@@ -1,0 +1,457 @@
+        <!-- Welcome Slide -->
+        <section>
+          <section>
+            <h3>Week 09 of Linux Admin 2</h3>
+          </section>
+        </section>
+
+        <!-- Title Slide -->
+				<section>
+  					<h3>HTC CCIS 2122-40</h3>
+  					<h3>Linux Admin 2</h3>
+  					<h3>Week 09</h3>
+  					<p>
+  						    <small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+  					</p>
+            <p>
+              <small><a href="https://instructor.recycledthoughts.org/">instructor.recycledthoughts.org</a></small>
+            </p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+              <li>Network File Systems</li>
+              <li>So Far In Review</li>
+              <li>Questions?</li>
+              <li>Extra Credit</li>
+              <li>Rest of the Evening/Next Weeks</li>
+            </ul>
+        </section>
+
+        <!-- Network File Systems: Overview Slides -->
+        <section>
+          <section>
+            <h3>Network File Systems: Overview</h3>
+            <ul>
+              <li>Storage that is shared from a host</li>
+              <li>A client mounts the remote share</li>
+              <li>NFS (Linux/Mac)</li>
+              <li>SMB/CIFS (Linux/Mac/Win)</li>
+              <br />
+              <li>References:</li>
+              <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Network-attached_storage">Network-attached storage (wikipedia)</a></li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Network File Systems: NFS Slides -->
+        <section>
+          <section>
+            <h3>Network File Systems: NFS</h3>
+            <ul>
+              <li>Originally developed by Sun Microsystems in 1984</li>
+              <li>Now managed by the Ineternet Engineering Task Force</li>
+              <br />
+              <li>NFSv4/NFSv3</li>
+              <br />
+              <li>References:</li>
+              <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Network_File_System">Network File Storage (wikipedia)</a></li>
+                <li><a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Storage_Administration_Guide/ch-nfs.html">RHEL: Network File System</a></li>
+                <li>A Paractical Guide to Ubuntu Linux Ch. 23 pg. 843-867</li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Install/Configure NFS</h3>
+            <ul>
+              <li><a href="https://www.howtoforge.com/tutorial/setting-up-an-nfs-server-and-client-on-centos-7/"> Setting up an NFS Server and Client on CentOS 7.2 (HowtoForge)</a></li>
+              <li>Configure the Firewall</li>
+              <li>Install NFS Utils Package</li>
+              <li>Start NFS Server</li>
+              <li>Export Directory Shares on Server</li>
+              <li>Mount NFS Share on Client</li>
+              <li>Test</li>
+              <li>Configure to Mount on Boot</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Configure the Firewall</h3>
+            <ul>
+              <li>Allow NFS Permanently</li>
+              <li>Reload Rules</li>
+              <li></li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+firewall-cmd --permanent --zone=public --add-service=nfs
+firewall-cmd --reload
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Install NFS Utils Package</h3>
+            <ul>
+              <li>On Both Client and Server</li>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+yum install nfs-utils -y
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Start NFS Server</h3>
+            <ul>
+              <li>Enable &amp; Start NFS Server Services</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+systemctl enable nfs-server.service
+systemctl start nfs-server.service
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Export Directory Shares on Server</h3>
+            <ul>
+              <li>Create Directory to share</li>
+              <li>Configure Exports</li>
+              <li>Force changes in.</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+mkdir /var/nfs
+chown nfsnobody:nfsnobody /var/nfs
+chmod 755 /var/nfs
+
+## Append to /etc/exports
+/var/nfs        *(rw,sync,no_subtree_check)
+
+# Force the changes in
+exportfs -a
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Mount NFS Share on Client</h3>
+            <ul>
+              <li>On Client</li>
+              <li>Create directory that remote fs is mounted to</li>
+              <li>Mount the remote filesystem</li>
+              <li>Verify it shows up as mounted</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Create Directory
+mkdir -p /mnt/nfs/var/nfs
+
+# Mount Remote Files System
+mount SERVER_IP:/var/nfs /mnt/nfs/var/nfs
+
+# Test
+df -h
+mount
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Test</h3>
+            <ul>
+              <li>Create file on on client, check on server.</li>
+              <li>Create file on server, check on client</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Configure to Mount on Boot</h3>
+            <ul>
+              <li>On Client</li>
+              <li>Add to /etc/fstab</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+SERVER_IP:/var/nfs  /mnt/nfs/var/nfs   nfs      rw,sync,hard,intr  0     0
+              </code></pre>
+              <li>Issue `mount` to mount all devices</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+mount
+              </code></pre>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Unmounting a filesystem</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+umount /mnt/nfs/var/nfs
+            </code></pre>
+            <ul>
+              <li>If you get an error that the filesystem is busy cd to your home directory or kill processes using files in the mounted filesystem</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Network File Systems: SMB/CIFS Slides-->
+        <section>
+          <section>
+            <h3>Network File Systems: SMB/CIFS</h3>
+            <ul>
+              <li>Server Message Block(SMB)</li>
+              <li>Common Internet File System(CIFS)</li>
+              <br />
+              <li>Microsoft/IBM/3Com ~1990</li>
+              <li>Samba was an effort to reverse engineer SMB</li>
+              <li>Ties into Active Directory for Auth</li>
+              <br />
+              <li>References:</li>
+              <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Server_Message_Block">SMB (wikipedia)</a></li>
+                <li><a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Managing_Confined_Services/chap-Managing_Confined_Services-Samba.html">RHEL: Samba</a></li>
+                <li>A Paractical Guide to Ubuntu Linux Ch. 24 pg. 869-867</li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Install/Configure Samba</h3>
+            <ul>
+              <li><a href="https://www.howtoforge.com/samba-server-installation-and-configuration-on-centos-7">Samba Server Installation and Configuration on CentOS 7 (HowtoForge)</a></li>
+              <li>For your information; We could add this in if people want to work on it in a future lab.</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- So Far In Review Slides -->
+        <section>
+          <section>
+            <h3>So Far in Review</h3>
+            <ul>
+              <li>We are going to walk each week and highlight what you should know.</li>
+              <li>If you have questions ask them as we go along.</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Week 01 In Review -->
+        <section>
+          <section>
+            <h3>Week 01 In Review</h3>
+              <ul>
+                <li><a href="https://presentations.recycledthoughts.org/html/2016-ccis2122-40/week01.html#">Week 01</a></li>
+                <li>install your workstation</li>
+                <li>review - linux admin 1</li>
+                <li>introduction to client-server and network services</li>
+              </ul>
+          </section>
+
+          <section>
+            <h3>What you should remember</h3>
+            <ul>
+              <li>How to install CentOS from a USB Drive</li>
+              <li>Updating, Installling and Removing Software</li>
+              <li>Understanding of Client-Server</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Linux Admin 1 In Review -->
+        <section>
+          <section>
+            <h3>Linux Admin 1 In Review</h3>
+              <ul>
+                <li><a href="https://presentations.recycledthoughts.org/html/2016-ccis1121-40/index.html#/#">Linux Admin 1</a></li>
+                <li>Basic Linux Adminstration</li>
+              </ul>
+          </section>
+
+          <section>
+            <h3>What you should remember</h3>
+            <ul>
+              <li>Basic Commands</li>
+              <ul>
+                <li>Navigating Around</li>
+                <li>Working with files and directories</li>
+                <li>Working with processes</li>
+              </ul>
+              <li>Basic Scripting</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Week 02 In Review -->
+        <section>
+          <section>
+            <h3>Week 02 In Review</h3>
+              <ul>
+                <li><a href="https://presentations.recycledthoughts.org/html/2016-ccis2122-40/week02.html#">Week 02</a></li>
+                <li>Linux Admin 1 Review</li>
+                <li>Re-Intro to Virtualization</li>
+                <li>Intro to Vagrant</li>
+                <ul>
+                  <li>Booted and connected to basic VMs</li>
+                </ul>
+              </ul>
+          </section>
+
+          <section>
+            <h3>What you should remember</h3>
+            <ul>
+              <li>Basic virtualization</li>
+              <li>Basic Vagrant</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Week 04 In Review -->
+        <section>
+          <section>
+            <h3>Week 04 In Review</h3>
+              <ul>
+                <li><a href="https://presentations.recycledthoughts.org/html/2016-ccis2122-40/week04.html#">Week 04</a></li>
+                <li>Introduction to Git</li>
+                <li>Introduction to Automation with Ansible</li>
+              </ul>
+          </section>
+
+          <section>
+            <h3>What you should remember</h3>
+            <ul>
+              <li>Basic Git Commands</li>
+              <li>Basic Ansible Concepts</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Week 05 In Review -->
+        <section>
+          <section>
+            <h3>Week 05 In Review</h3>
+              <ul>
+                <li><a href="https://presentations.recycledthoughts.org/html/2016-ccis2122-40/week05.html#">Week 05</a></li>
+                <li>Review Basic Apache HTTPd Install</li>
+                <li>What is HTTP? What is HTTPd?</li>
+                <li>Lynx</li>
+                <li>Wget</li>
+                <li>cURL</li>
+                <li>Basic Apche HTTPd Configuration</li>
+              </ul>
+          </section>
+
+          <section>
+            <h3>What you should remember</h3>
+            <ul>
+              <li>What Apache HTTPd is and what it does.</li>
+              <li>How to install, enable, start, stop and disable HTTPd</li>
+              <li>How to test HTTPd</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Week 06 In Review -->
+        <section>
+          <section>
+            <h3>Week 06 In Review</h3>
+              <ul>
+                <li>Readings</li>
+                <ul>
+                  <li>Ansible vs Shell</li>
+                  <li>RHEL 7 - Networking Guide</li>
+                  <li>CentOS Bonding Interfaces</li>
+                </ul>
+              </ul>
+          </section>
+
+          <section>
+            <h3>What you should remember</h3>
+            <ul>
+              <li>General concepts from readings</li>
+              <li>Comfort with Linux Networking</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Week 07 In Review -->
+        <section>
+          <section>
+            <h3>Week 07 In Review</h3>
+              <ul>
+                <li><a href="https://presentations.recycledthoughts.org/html/2016-ccis2122-40/week07.html#">Week 07</a></li>
+                <li>Apache Modules</li>
+                <li>Apache HTTPd Automated</li>
+              </ul>
+          </section>
+
+          <section>
+            <h3>What you should remember</h3>
+            <ul>
+              <li>What is an Apache HTTPd Module</li>
+              <li>Basics of the modules we covered</li>
+              <li>What goes into testing a module</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Week 08 In Review -->
+        <section>
+          <section>
+            <h3>Week 08 In Review</h3>
+              <ul>
+                <li><a href="https://presentations.recycledthoughts.org/html/2016-ccis2122-40/week08.html#">Week 08</a></li>
+                <li>Networking: Overview</li>
+                <li>Networking: Tools</li>
+                <li>Networking: DHCP &amp; Staic</li>
+                <li>Networking: Firewalls</li>
+              </ul>
+          </section>
+
+          <section>
+            <h3>What you should remember</h3>
+            <ul>
+              <li>The Kernel manages networking: protocols, drivers, adapters</li>
+              <li>Network related commands</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Questions Slide -->
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <!-- Extra Credit -->
+        <section>
+          <section>
+            <h3>Extra Credit</h3>
+            <ul>
+              <li>Check Calendar</li>
+              <br />
+              <li>Go to outside industry events.</li>
+              <li>Check in with me or someone I arrange.</li>
+              <li>Write a page:</li>
+              <ul>
+                <li>What did you see?</li>
+                <li>How did you participate?</li>
+                <li>What did you learn?</li>
+              </ul>
+              <li>Send it to me in an e-mail.</li>
+              <li>Worth a lab and you can do two.</li>
+            </ul>
+          </section>
+
+        </section>
+
+        <section>
+            <h3>Rest of the Evening:</h3>
+            <ul>
+                <li>Lab 07</li>
+            </ul>
+            <h3>Next Weeks:</h3>
+            <ul>
+              <li>Week 10: File Systems - Midterm Exam</li>
+              <li>Week 11: TBD</li>
+              <li>Week 12: TBD</li>
+              <li>Week 13: TBD</li>
+              <li>Week 14: NO CLASS</li>
+              <li>Week 15: TBD</li>
+              <li>Week 16: TBD</li>
+              <li>Week 17: Presentations</li>
+            </ul>
+        </section>

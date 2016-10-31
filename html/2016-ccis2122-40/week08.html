@@ -1,0 +1,688 @@
+        <!-- Welcome Slide -->
+        <section>
+          <section>
+            <h3>Week 08 of Linux Admin 2</h3>
+            <h4>Commands</h4>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+foobar
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Title Slide -->
+				<section>
+  					<h3>HTC CCIS 2122-40</h3>
+  					<h3>Linux Admin 2</h3>
+  					<h3>Week 08</h3>
+  					<p>
+  						    <small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+  					</p>
+            <p>
+              <small><a href="https://instructor.recycledthoughts.org/">instructor.recycledthoughts.org</a></small>
+            </p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+              <li>Last Week in Review</li>
+              <li>Networking: Overview</li>
+              <li>Networking: Tools</li>
+              <li>Networking: DHCP &amp; Staic</li>
+              <li>Networking: Firewalls</li>
+              <li>Questions?</li>
+              <li>Extra Credit</li>
+              <li>Rest of the Evening/Next Weeks</li>
+            </ul>
+        </section>
+
+        <!-- Last Week in Review -->
+        <section>
+          <section>
+            <h3>Last Week in Review - We did. . .</h3>
+            <ul>
+              <li>Apache Modules</li>
+              <li>Apache HTTPd Automated</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Reminder about CentOS -->
+        <section>
+          <section>
+            <h3>Reminder about CentOS</h3>
+            <ul>
+              <li>CentOS is an community support build of Red Hat Enterprise Linux</li>
+              <li>So if you need documentation you can look for Red Had documentation.</li>
+              <br />
+              <li>For networking the commands tend to be consistant under Linux</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Networking: Overview -->
+        <section>
+          <section>
+            <h3>Networking: Overview</h3>
+            <ul>
+              <li>Support for networking is managed as a part of the kernel</li>
+              <li>The kernel provides modules for supporting common protocols</li>
+              <li>The kernel uses drivers to interface to support networking devices.</li>
+              <br />
+              <li>Resources:</li>
+              <ul>
+                <li><a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Networking_Guide/">Red Hat Enterprise Linux 7: Networking</a></li>
+                <li><a href="https://access.redhat.com/sites/default/files/attachments/rh_ip_command_cheatsheet_1214_jcs_print.pdf">ip Command Cheat Sheet</a></li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Networking: Protocols</h3>
+            <ul>
+              <li>TCP</li>
+              <li>IPv4</li>
+              <li>IPv6</li>
+              <li>Others. . . (See below link)</li>
+              <br />
+              <li>You have covered these before right?</li>
+              <br />
+              <li>Resources:</li>
+              <ul>
+                <li><a href="https://wiki.linuxfoundation.org/networking/start">Kernel Networking</a></li>
+                <li><a href="https://www.youtube.com/watch?v=aor29pGhlFE">Internet Protocol - IPv4 vs IPv6 as Fast As Possible(Tech Quickie)</a></li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Networking: Drivers</h3>
+            <ul>
+              <li>Ethernet</li>
+              <li>Bridge</li>
+              <li>Bonding</li>
+              <li>Tunneling</li>
+              <li>!Wireless!</li>
+              <li>Others. . . (See previous link)</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Networking: Network Adapters</h3>
+            <ul>
+              <li>Drivers that cordinate between the kernel and the hardware</li>
+              <li>All common devies are supported or are getting support.</li>
+              <br />
+              <li>Device may just show up as: eth0</li>
+              <li>Or may be named after the driver: p4p1(Marvel), em1(Intel)</li>
+              <br />
+              <li>Resources:</li>
+              <ul>
+                <li><a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/networking">Kernel Documentation/Networking</a></li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Networking: Tools -->
+        <section>
+          <section>
+            <h3>Networking: Tools</h3>
+            <ul>
+              <li>Testing</li>
+              <li>Administration</li>
+              <li>Clients</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Networking: Tools: Testing -->
+        <section>
+          <section>
+            <h3>Networking: Tools: Testing</h3>
+            <ul>
+              <li>ping</li>
+              <li>traceroute</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>ping</h3>
+            <ul>
+              <li>Test connectivity between devices</li>
+              <li>ICMP ECHO_REQUEST</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+ping google.com
+
+ping -c 1 google.com
+
+ping6 google.com
+
+man ping
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>traceroute</h3>
+            <ul>
+              <li>Tracks the route that packets take from an IP network.</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+traceroute google.com
+
+# Use ICMP Echo
+traceroute --icmp google.com
+
+# Use TCP SYN
+traceroute --tcp google
+
+traceroute6 google.com
+
+man traceroute
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Networking: Tools: Administration -->
+        <section>
+          <section>
+            <h3>Networking: Tools: Administration</h3>
+            <ul>
+              <li>ip</li>
+              <li>ifconfig</li>
+              <li>route</li>
+              <li>netstat</li>
+              <li>nmcli/nmtui</li>
+              <li>ethtool</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>ip</h3>
+            <ul>
+              <li>show/edit routing, devices, policy routing and tunnels</li>
+              <li>A newer tool that is replacing other standalone tools</li>
+              <li>Below commands are used to list current settings</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+ip address  # IP Addresses
+
+ip link  # Network Interfaces
+
+ip route  # Routing Table
+
+ip maddr  # Multicast IP addresses
+
+ip neigh  # ARP Table
+
+man ip
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>ip: useful commands</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# up an interface
+ip link set eth0 up
+
+# down an interface
+ip link set eth0 down
+
+# add/set address on an interface
+ip link add 192.168.1.1/24 dev eth0
+
+# remove address from an interface
+ip link del 192.168.1.1/24 dev eth0
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>ifconfig</h3>
+            <ul>
+              <li>Interface configuration</li>
+              <li>A common tool</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+ifconfig -a
+ifconfig eth0
+ifconfig eth0 up
+ifconfig eth0 down
+ifconfig eth0 192.168.1.1 \
+              netmask 255.255.255.0 \
+              broadcast 192.168.1.255 \
+              up
+
+man ifconfig
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>route</h3>
+            <ul>
+              <li>Route administration</li>
+              <li>Use netstat to display</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Add the default gateway
+route add dafult gw 10.168.1.254
+
+# Remove the deauflt gateway
+route del default
+
+# Add a route for another network
+route add -net 192.168.2.0 netmask 255.255.255.0 dev eth0
+
+man route
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>netstat</h3>
+            <ul>
+              <li>Print various network statistics</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# print interface information
+netstat -i
+
+# print route information and do not resolve hostnames
+netstat -rn
+
+# print statistics
+netstat -s
+
+man netstat
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>nmcli/nmtui</h3>
+            <ul>
+              <li>Network Manager CLI</li>
+              <li>Another tool to manager your interfaces.</li>
+              <li>The same tool that you get throught GUI network manager</li>
+              <li>Easier to configure wifi</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+nmcli connection show
+
+#curses gui
+mntui
+
+man cmcli
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>ethtool</h3>
+            <ul>
+              <li>admin network driver and hardware settings</li>
+              <li>Rare to use this tool</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#List device properties
+ethtool eth0
+
+# anger your friends
+ethtool -s eth0 speed 10 autoneg off
+ifup eth0
+
+# display driver settings
+ethtool -i eth0
+
+# moar statistics
+ethtool -S eth0
+
+man ethtool
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Networking: Tools: Clients -->
+        <section>
+          <section>
+            <h3>Networking: Tools: Clients</h3>
+            <ul>
+              <li>ftp</li>
+              <li>lynx</li>
+              <li>ssh</li>
+              <li>telnet</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>ftp</h3>
+            <ul>
+              <li>File Transfer Protocol</li>
+              <li>Transfer files</li>
+              <li>Rarely used</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# A FTP client
+ncftp
+
+# A secure client
+sftp
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>lynx</h3>
+            <ul>
+              <li>We have already talked about this</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>ssh</h3>
+            <ul>
+              <li>Secure Shell</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+ssh host.local
+
+ssh user@host.local
+
+ssh -Y user@host.local
+
+ssh -t user@host.local
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>telnet</h3>
+            <ul>
+              <li>Used to connect to a remote server</li>
+              <li>was used for a remote shell</li>
+              <li>insecure as data is transfered in plain text</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+telnet google.com 80
+GET /index.html HTTP/1.1
+Host: google.com
+
+# use Ctrl-] and then quit to exit
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Networking: DHCP &amp; Staic -->
+        <section>
+          <section>
+            <h3>Networking: DHCP &amp; Staic</h3>
+            <ul>
+              <li>How do we assign IP Addresses?</li>
+              <ul>
+                <li>Dynamic Host Control Protocol (DHCP)</li>
+                <li>Static Configuration</li>
+              </ul>
+              <br />
+              <li>Via CLI</li>
+              <li>Via Files</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Networking: DHCP</h3>
+            <ul>
+              <li>A DHCP Client contacts a DHCP Server and one is assigned</li>
+              <li>Useful when you don't need to have a static IP</li>
+              <br />
+              <li>Resources:</li>
+              <ul>
+                <li><a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s1-networkscripts-interfaces.html">Interface Configuration Files(Red Hat)</a></li>
+              </ul>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Request a new dhcp lease
+dhclient eth0
+
+# Release a dhcp lease and stop the client
+dhclient -r eth0
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Networking: DHCP</h3>
+            <ul>
+              <li>/etc/sysconfig/network-scripts/ifcfg-INTERFACE</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+DEVICE=eth0
+BOOTPROTO=dhcp
+ONBOOT=yes
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Networking: Static</h3>
+            <ul>
+              <li>Fixed IP Address</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+DEVICE=eth0
+BOOTPROTO=none
+ONBOOT=yes
+NETMASK=255.255.255.0
+IPADDR=192.168.1.1
+USERCTL=no
+            </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>What is a firewall?</h3>
+          </section>
+        </section>
+
+        <!-- Networking: Firewalls -->
+        <section>
+          <section>
+            <h3>Networking: Firewalls</h3>
+            <ul>
+              <li>firewalld</li>
+              <ul>
+                <li>Dynamic firewall daemon</li>
+              </ul>
+              <li>iptables</li>
+              <ul>
+                <li>The raw linux firewall interface</li>
+              </ul>
+              <br />
+              <li>Resources:</li>
+              <ul>
+                <li><a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Using_Firewalls.html">Using Firewalls(Red Hat)</a></li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>firewalld</h3>
+            <ul>
+              <li>firewall-cmd</li>
+              <li>firewall-config (gui)</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Should be installed and running on your worksation.
+
+# Stop and Disable
+systemctl stop firewalld
+systemctl disable firewalld
+
+# Enable and start
+systemctl enable firewalld
+systemctl start firewalld
+
+# Get the status
+systemctl status firewalld
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>firewalld</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Should be installed and running on your worksation.
+
+# Stop and Disable
+systemctl stop firewalld
+systemctl disable firewalld
+
+# Enable and start
+systemctl enable firewalld
+systemctl start firewalld
+
+# Get the status
+systemctl status firewalld
+firewall-cmd --state
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>iptables</h3>
+            <ul>
+              <li>iptables</li>
+              <li>system-config-firewall (gui)</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+firewall-cmd --get-active-zones
+
+firewall-cmd --get-zone-of-interface=em1
+
+firewall-cmd --zone=public --list-all
+
+firewall-cmd --get-services
+
+firewall-cmd --permanent --get-services
+
+firewall-cmd --reload
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>firewalld</h3>
+            <ul>
+              <li>iptables</li>
+              <li>system-config-firewall (gui)</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+firewall-cmd --zone=public --list-ports
+
+firewall-cmd --zone=dmz --add-port=8080/tcp
+firewall-cmd --zone=public --add-port=5060-5061/udp
+
+
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>iptables</h3>
+            <ul>
+              <li>vi /etc/firewalld/services/smtp.xml</li>
+              <li>Default in /usr/firewalld/services</li>
+            </ul>
+            <pre><code class="xml" data-trim contenteditable style="font-size: 18px;">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;service&gt;
+  &lt;short&gt;Mail (SMTP)&lt;/short&gt;
+  &lt;description&gt;This option allows incoming SMTP mail delivery.&lt;/description&gt;
+  &lt;port protocol="tcp" port="25"/&gt;
+&lt;/service&gt;
+            </code></pre>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+firewall-cmd --zone=public --add-service=smtp
+firewall-cmd --zone=public --add-service=smtp --permanent
+
+firewall-cmd --zone=public --remove-service=smtp
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>iptables</h3>
+            <ul>
+              <li>iptables</li>
+              <li>system-config-firewall (gui)</li>
+              <br />
+              <li>Resources:</li>
+              <ul>
+                <li><a href="https://www.unix-ninja.com/p/An_iptables_cheat-sheet">An iptables cheat-sheet</a></li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>iptables</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+iptables -L
+iptables -L -n -v --line-numbers
+
+iptables -A INPUT -s 1.2.3.4 -j DROP
+
+iptables -A INPUT -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 80 -m state --state ESTABLISHED -j ACCEPT
+
+iptables -t nat -A PREROUTING -p tcp -d 1.2.3.4 --dport 422 -j DNAT --to 192.168.0.100:22
+
+iptables -F
+
+iptables-save > /etc/iptables.rules
+iptables-restore < /etc/iptables.rules
+            </code></pre>
+          </section>
+
+        </section>
+
+        <!-- Questions Slide -->
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <!-- Extra Credit -->
+        <section>
+          <section>
+            <h3>Extra Credit</h3>
+            <ul>
+              <li>Go to outside industry events.</li>
+              <li>Check in with me or someone I arrange.</li>
+              <li>Write a page:</li>
+              <ul>
+                <li>What did you see?</li>
+                <li>How did you participate?</li>
+                <li>What did you learn?</li>
+              </ul>
+              <li>Send it to me in an e-mail.</li>
+              <li>Worth a lab and you can do two.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Extra Credit Opprunity: October 15th 2016 10am</h3>
+            <ul>
+              <li>Pengunins Unbound</li>
+              <li><a href="https://www.meetup.com/PenguinsUnbound/events/226539633/">Meetup.com</a></li>
+           </ul>
+          </section>
+
+          <section>
+            <h3>Extra Credit Opprunity: October 20th 2016 6:30pm</h3>
+            <ul>
+              <li>Ansible Minneapolis</li>
+              <li><a href="https://www.meetup.com/Ansible-Minneapolis/events/233957728/">Meetup.com</a></li>
+           </ul>
+          </section>
+        </section>
+
+        <section>
+            <h3>Rest of the Evening:</h3>
+            <ul>
+                <li>Lab 06</li>
+            </ul>
+            <h3>Next Weeks:</h3>
+            <ul>
+              <li>Week 09: File Services - TBD - Review</li>
+              <li>Week 10: Midterm Exam - TBD</li>
+              <li></li>
+            </ul>
+        </section>

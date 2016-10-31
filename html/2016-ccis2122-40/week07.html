@@ -1,0 +1,616 @@
+        <!-- Welcome Slide -->
+        <section>
+          <section>
+            <h3>Week 07 of Linux Admin 2</h3>
+            <h4>Commands</h4>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+cd ~/two-boxes
+vagrant destroy -f
+
+git pull
+
+# Switched to CentOS 6.7
+vagrant up
+vagrant ssh node1
+  sudo yum install httpd -y
+  sudo chkconfig httpd on
+  sudo service httpd start
+  exit
+
+curl http://localhost:8081/
+# Do the same for node2
+            </code></pre>
+          </section>
+
+          <section>
+            <h4>Commands</h4>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+## From your workstation
+# Use curl via redirected port (Example to node1)
+curl http://localhost:8081
+
+# ssh vi host only network
+ssh vagrant@10.42.0.11
+
+# Curl via host only network
+curl http://10.42.0.11/
+            </code></pre>
+          </section>
+
+          <section>
+            <h4>git Commands</h4>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+git branch -a
+git checkout BRANCH
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Title Slide -->
+				<section>
+  					<h3>HTC CCIS 2122-40</h3>
+  					<h3>Linux Admin 2</h3>
+  					<h3>Week 07</h3>
+  					<p>
+  						    <small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+  					</p>
+            <p>
+              <small><a href="https://instructor.recycledthoughts.org/">instructor.recycledthoughts.org</a></small>
+            </p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+              <li>Last Week in Review</li>
+              <li>Apache Modules</li>
+              <li>Apache HTTPd Automated</li>
+              <li>Questions?</li>
+              <li>Extra Credit</li>
+              <li>Rest of the Evening/Next Weeks</li>
+            </ul>
+        </section>
+
+        <!-- Last Week in Review -->
+        <section>
+          <section>
+            <h3>Last Week in Review - We did. . .</h3>
+            <ul>
+              <li>Readings and short answer lab.</li>
+            </ul>
+            <h3>The week before last Week in Review - We did. . .</h3>
+            <ul>
+              <li>Review Basic Apache HTTPd Install</li>
+              <li>What is HTTP? What is HTTPd?</li>
+              <li>Lynx</li>
+              <li>Wget</li>
+              <li>cURL</li>
+              <li>Basic Apche HTTPd Configuration</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Stage a simple html file -->
+        <section>
+          <section>
+            <h3>But First. . .</h3>
+            <h4>Some prep work</h4>
+            <ul>
+              <li>Make sure that you have node1 up.</li>
+              <li>Make sure that you have httpd on node1.</li>
+              <li>Raise your hand if you are not here.</li>
+              <br />
+              <li>Let's make file that we will use later.</br>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Stage a simple HTML to query</h3>
+            <ul>
+              <li>Create a file locally as practice</li>
+              <li>Take the time to practice. 'vi index.html'</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello, World!&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    Hello, World!
+  &lt;/body&gt;
+&lt;/html&gt;
+              </code></pre>
+              <li>Open with 'google-chrome index.html'</li>
+          </ul>
+          </section>
+
+          <section>
+            <h3>Stage Top-Level index.html</h3>
+            <ul>
+              <li>`vagrant ssh node1`</li>
+              <li>`sudo vi /var/www/html/index.html`</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello, World!&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    Hello, World!
+  &lt;/body&gt;
+&lt;/html&gt;
+              </code></pre>
+            <li>exit</li>
+          </ul>
+          </section>
+
+          <section>
+            <h3>Stage Basic Auth index.html</h3>
+            <ul>
+              <li>`vagrant ssh node1`</li>
+              <li>`sudo mkdir /var/www/html/basic-auth`</li>
+              <li>`sudo vi /var/www/html/basic-auth/index.html`</li>
+              <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello, Basic Auth World!&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    Hello, Basic Auth World!
+  &lt;/body&gt;
+&lt;/html&gt;
+              </code></pre>
+            <li>exit</li>
+          </ul>
+          </section>
+        </section>
+
+        <!-- Apache Modules -->
+        <section>
+          <section>
+            <h3>Apache Modules</h3>
+            <ul>
+              <li>Expand functionality without rebuilding HTTPd</li>
+              <li>Dynamicly loadable modules</li>
+              <br />
+              <li><a href="https://httpd.apache.org/modules/">Apache httpd Modules</a></li>
+              <li><a href="https://httpd.apache.org/docs/2.4/mod/">Apache httpd Module Index</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/List_of_Apache_modules">List of Apache HTTPd Modules(Wikipedia)</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Common Modules</h3>
+            <ul>
+              <li>mod_auth*</li>
+              <ul>
+                <li>mod_auth_basic <-- </li>
+                <li>mod_auth_ldap</li>
+                <li>mod_auth_*</li>
+              </ul>
+              <li>mod_proxy</li>
+              <li>mod_rewrite</li>
+              <li>mod_security</li>
+              <li>mod_ssl</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- mod_auth_basic -->
+        <section>
+          <section>
+            <h3>mod_auth_basic</h3>
+            <ul>
+              <li>Facilitates Basic Authentication/Authorization</li>
+              <li>Forces a client to put in a password to access a page</li>
+              <li>Other modules get more complex</li>
+              <br />
+              <li><a href="https://httpd.apache.org/docs/2.2/mod/mod_auth_basic.html">mod_auth_basic doc(httpd 2.2)</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>mod_auth_basic Requirements</h3>
+            <ul>
+              <li>Steps to install mod_auth_basic</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Already installed in /usr/lib64/httpd/modules
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Craete a user database.</h3>
+            <ul>
+              <li>Execute this command.</li>
+              <li>Enter in the password 'user1'</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+sudo htpasswd -c /etc/httpd/conf/.htpasswd user1
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Create a Configuration File</h3>
+            <ul>
+              <li>/etc/httpd/conf.d/auth_basic.conf</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+&lt;Directory /var/www/html/basic-auth&gt;
+    AuthType Basic
+    AuthName "Basic Authentication"
+    AuthUserFile /etc/httpd/conf/.htpasswd
+    require valid-user
+&lt;/Directory&gt;
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Restart HTTPd</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+vagrant ssh node1
+
+sudo service httpd restart
+
+exit
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Test mod_auth_basic</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#index.html is implied
+
+# You should get an error
+curl -sv http://10.42.0.11/basic-auth/
+
+# You will be prompted for a password
+curl -sv -u user1 http://10.42.0.11/basic-auth/
+
+# Try in firefox.
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- mod_proxy -->
+        <section>
+          <section>
+            <h3>mod_proxy</h3>
+            <ul>
+              <li>We are going to focus on a reverse proxy.</li>
+              <p>
+A reverse proxy retrieves data for a client from one or more servers.
+              </p>
+              <li>This is how you scale web servers.</li>
+              <li>&lt;== DRAWING</li>
+              <br />
+              <li><a href="https://httpd.apache.org/docs/2.2/mod/mod_proxy.html">mod_proxy (httpd 2.2) docs</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>mod_proxy Requirements</h3>
+            <ul>
+              <li>Steps to install mod_proxy</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Already installed in /usr/lib64/httpd/modules
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Create a Configuration File</h3>
+            <ul>
+              <li>On node2</li>
+              <li>/etc/httpd/conf.d/reverse_proxy.conf</ul>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+ProxyRequests Off
+
+ProxyPass /basic-auth http://10.42.0.11/basic-auth
+ProxyPassReverse /basic-auth http://10.42.0.11/basic-auth
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Restart HTTPd</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+vagrant ssh node2
+
+sudo service httpd restart
+
+exit
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Test mod_proxy</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# We can see this working because we deployed the auth
+# configuration to node1 and not node2
+
+# You should get an error
+curl -sv http://10.42.0.12/basic-auth/
+
+# You will be prompted for a password
+curl -sv -u user1 http://10.42.0.12/basic-auth/
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- mod_rewrite -->
+        <section>
+          <section>
+            <h3>mod_rewrite</h3>
+            <ul>
+              <li>Intercept a request and rewrite the request or the response.</li>
+              <li>301 - Moved Permanently</li>
+              <li>302 - Found - Moved Temporarily</li>
+              <br />
+              <li>add www. to a hostname</li>
+              <li>force to use https instead of http</li>
+              <li>simplify complex URLs</li>
+              <ul>
+                <li>/widget to /product/software/apps?widget</li>
+              </ul>
+            </ul>
+          </section>
+          <section>
+            <ul>
+              <li>Important with SEO</li>
+              <br />
+              <li><a href="https://httpd.apache.org/docs/2.2/mod/mod_rewrite.html">mod_rewrite (httpd 2.2) docs</a></li>
+              <li><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">RFC 2616 defining response codes</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>mod_rewrite Requirements</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# Already installed in /usr/lib64/httpd/modules
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Create a Configuration File</h3>
+            <ul>
+              <li>On node1</li>
+              <li>/etc/httpd/conf.d/reverse_proxy.conf</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+              RewriteEngine On
+              RewriteRule ^/redirect$ http://10.42.0.12/ [R=301,L]
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Restart HTTPd</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+vagrant ssh node1
+
+sudo service httpd restart
+
+exit
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Test mod_rewrite</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# You should get an error
+curl -sv http://10.42.0.11/redirect
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>In actual use</h3>
+            <ul>
+              <li>Used in complex ways</li>
+              <li>RewriteCond</li>
+              <ul>
+                <li>HTTP_USER_AGENT</li>
+                <li>HTTP_HOST</li>
+                <li>HTTP_COOKIE</li>
+                <li>SERVER_PROTOCOL</li>
+                <li>REMOTE_ADDR</li>
+                <li>REMOTE_USER</li>
+                <li>REQUEST_URI</li>
+                <li>HTTPS</li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- mod_security -->
+        <section>
+          <section>
+            <h3>mod_security</h3>
+            <ul>
+              <li>Skipping for time</li>
+              <li>Keep in mind that it acts as an application firewall</li>
+              <li>Works based off of rules and tries to protect from attacks</li>
+              <br />
+              <li><a href="https://www.modsecurity.org/documentation.html">mod_security docs</a></li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- mod_ssl -->
+        <section>
+          <section>
+            <h3>mod_ssl</h3>
+            <ul>
+              <li>Adds TLS/SSL to HTTPd</li>
+              <br />
+              <li><a href="https://httpd.apache.org/docs/2.2/mod/mod_ssl.html">mod_ssl (httpd 2.2) docs</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>mod_ssl Requirements</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+vagrant ssh node1
+
+sudo yum install mod_ssl -y
+
+exit
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Create Self-Signed Certificate</h3>
+            <ul>
+              <li>Common Name should be htc.local</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+vagrant ssh node1
+
+sudo mkdir /etc/ssl
+sudo openssl req -x509 -newkey rsa:2048 -keyout /etc/ssl/htc.local.key -out /etc/ssl/htc.local.pem -days 365 -nodes
+sudo chown apache:apache /etc/ssl/htc*
+sudo chmod 700 /etc/ssl/htc*
+
+exit
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Create a Configuration File</h3>
+            <ul>
+              <li>On node1</li>
+              <li>/etc/httpd/conf.d/virtualhost.conf</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+&lt;VirtualHost *:443&gt;
+        SSLEngine on
+        SSLCertificateFile /etc/ssl/htc.local.pem
+        SSLCertificateKeyFile /etc/ssl/htc.local.key
+        &lt;Directory /var/www/html&gt;
+        AllowOverride All
+        &lt;/Directory&gt;
+        ServerName htc.local
+&lt;/VirtualHost&gt;
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Restart HTTPd</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+vagrant ssh node1
+
+sudo service httpd restart
+
+exit
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Append to /etc/hosts</h3>
+            <ul>
+              <li>vi /etc/hosts</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+10.42.0.11 htc.local
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Test mod_rewrite</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# You will need to use the insecure flag.
+curl -sv --insecure https://htc.local/
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Apache HTTPd Automated -->
+        <section>
+          <section>
+            <h3>HTTPd Automated</h3>
+            <ul>
+              <li>Demo</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+cd ~/two-boxes
+vagrant destroy -f
+git pull
+git checkout apache
+
+vagrant up
+cd basic_apache
+
+ansible-playbook -vv -i inventory site.yml
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>HTTPd Automated</h3>
+            <ul>
+              <li>Demo</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+cd ~/two-boxes
+vagrant destroy -f
+vagrant up
+cd apache_with_roles
+
+sudo ansible-galaxy install geerlingguy.repo-epel
+sudo ansible-galaxy install jdauphant.ssl-certs
+
+ansible-playbook -vv -i inventory site.yml
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Questions Slide -->
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <!-- Extra Credit -->
+        <section>
+          <section>
+            <h3>Extra Credit</h3>
+            <ul>
+              <li>Go to outside industry events.</li>
+              <li>Check in with me or someone I arrange.</li>
+              <li>Write a page:</li>
+              <ul>
+                <li>What did you see?</li>
+                <li>How did you participate?</li>
+                <li>What did you learn?</li>
+              </ul>
+              <li>Send it to me in an e-mail.</li>
+              <li>Worth a lab and you can do two.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Extra Credit Opprunity: October 15th 2016 10am</h3>
+            <ul>
+              <li>Pengunins Unbound</li>
+              <li><a href="https://www.meetup.com/PenguinsUnbound/events/226539633/">Meetup.com</a></li>
+           </ul>
+          </section>
+
+          <section>
+            <h3>Extra Credit Opprunity: October 20th 2016 6:30pm</h3>
+            <ul>
+              <li>Ansible Minneapolis</li>
+              <li><a href="https://www.meetup.com/Ansible-Minneapolis/events/233957728/">Meetup.com</a></li>
+           </ul>
+          </section>
+        </section>
+
+        <section>
+            <h3>Rest of the Evening:</h3>
+            <ul>
+                <li>Lab 03</li>
+            </ul>
+            <h3>Next Weeks:</h3>
+            <ul>
+              <li>Week 08: All Networking + DHCP and Firewalls</li>
+              <li>Week 09: File Services - TBD - Review</li>
+              <li>Week 10: Midterm Exam - TBD</li>
+              <li></li>
+            </ul>
+        </section>

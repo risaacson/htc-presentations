@@ -1,0 +1,433 @@
+        <!-- Welcome Slide -->
+        <section>
+          <section>
+            <h3>Week 11 of Linux Admin 2</h3>
+            <h4>Commands</h4>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+foobar
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Title Slide -->
+				<section>
+  					<h3>HTC CCIS 2122-40</h3>
+  					<h3>Linux Admin 2</h3>
+  					<h3>Week 11</h3>
+  					<p>
+  						    <small>Instructor: Richard Isaacson / richard.isaacson@hennepintech.edu</small>
+  					</p>
+            <p>
+              <small><a href="https://instructor.recycledthoughts.org/">instructor.recycledthoughts.org</a></small>
+            </p>
+				</section>
+
+        <!-- agenda Slide -->
+        <section>
+            <h3>agenda</h3>
+            <ul>
+              <li>Last Week in Review</li>
+              <li>Introduction to Amazon Web Services</li>
+              <li>SSH Deeper Dive</li>
+              <li>Paper/Preentation</li>
+              <li>Questions?</li>
+              <li>Extra Credit</li>
+              <li>Rest of the Evening/Next Weeks</li>
+            </ul>
+        </section>
+
+        <!-- Last Week in Review -->
+        <section>
+          <section>
+            <h3>Last Week in Review - We did. . .</h3>
+            <ul>
+              <li>Filesystems</li>
+              <ul>
+                <li>Thoughts?</li>
+                <li>Questions?</li>
+              </ul>
+              <li>Test</li>
+              <ul>
+                <li>Not Graded Yet</li>
+              </ul>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Introduction to AWS -->
+        <section>
+          <section>
+            <h3>Has anyone used AWS?</h3>
+            <h4>Or any other "cloud" provider?</h4>
+          </section>
+
+          <section>
+            <h3>Introduction to AWS</h3>
+            <ul>
+              <li>Amazon Web Services</li>
+              <li>AWS is a collection of Services</li>
+              <br />
+              <li>Login</li>
+              <li>VPC</li>
+              <li>EC2</li>
+              <li>S3</li>
+              <li>RDS</li>
+              <li>Route53</li>
+            </ul>
+          </section>
+
+          <section>
+            <ul>
+              <li>You pay for:</li>
+              <ul>
+                <li>Compute</li>
+                <li>Storage</li>
+                <li>Data Transfer</li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Login</h3>
+            <ul>
+              <li>Username</li>
+              <li>Password</li>
+              <br />
+              <li>MFA</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>VPC</h3>
+            <ul>
+              <li>Create a private internal network with Subnets</li>
+              <li>Connect with a Internet, NAT and VPN Gateway with Routes</li>
+              <li>Secure with a Security Groups and ACLs</li>
+            </ul>
+            <br />
+            <li>References:</li>
+            <ul>
+              <li><a href="https://aws.amazon.com/vpc/">VPC Product</a></li>
+              <li><a href="https://aws.amazon.com/documentation/vpc/">VPC Documentation</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>EC2</h3>
+            <ul>
+              <li>Elastic Compute Cloud (as a Service)</li>
+              <br />
+              <li>Virtual Machines</li>
+              <li>Many Sizes</li>
+              <li>Many OSes</li>
+              <br />
+              <li>References:</li>
+              <ul>
+                <li><a href="https://aws.amazon.com/vpc/">EC2 Product</a></li>
+                <li><a href="https://aws.amazon.com/documentation/ec2/">EC2 Documentation</a></li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>S3</h3>
+            <ul>
+              <li>Simple Storage (as a) Service</li>
+              <li>Objects in a Bucket</li>
+              <br />
+              <li>References:</li>
+              <ul>
+                <li><a href="https://aws.amazon.com/vpc/">S3 Product</a></li>
+                <li><a href="https://aws.amazon.com/documentation/s3/">S3 Documentation</a></li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>RDS</h3>
+            <ul>
+              <li>Relational Database (as a) Service</li>
+              <br />
+              <li>MySQL</li>
+              <li>Oracle</li>
+              <li>PostgreSQL</li>
+              <br />
+              <li>References:</li>
+              <ul>
+                <li><a href="https://aws.amazon.com/vpc/">RDS Product</a></li>
+                <li><a href="https://aws.amazon.com/documentation/rds/">RDS Documentation</a></li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Route53</h3>
+            <ul>
+              <li>DNS as a Service</li>
+              <br />
+              <li></li>
+            </ul>
+            <br />
+            <li>References:</li>
+            <ul>
+              <li><a href="https://aws.amazon.com/vpc/">Route53 Product</a></li>
+              <li><a href="https://aws.amazon.com/documentation/route53/">Route53 Documentation</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Others</h3>
+            <ul>
+              <li>IAM (Identity and Access Management)</li>
+              <li>SQS (Simple Quueing Service)</li>
+              <li>CloudFormation</li>
+              <li>CloudWatch</li>
+              <li>AWS Certificate Manager</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Questions?</h3>
+          </section>
+        </section>
+
+        <!-- SSH Deeper Dive -->
+        <section>
+          <section>
+            <h3>SSH Deeper Dive</h3>
+            <ul>
+              <li>History</li>
+              <li>ssh</li>
+              <li>ssh-keygen</li>
+              <li>ssh-copy-id</li>
+              <li>scp</li>
+              <li>rsync</li>
+            </ul>
+          </section>
+
+          <section>
+            <blockquote cite="https://tools.ietf.org/html/rfc4252">
+The Secure Shell Protocol (SSH) is a protocol for secure remote login and other secure network services over an insecure network.
+
+-RFC4252
+            </blockquote>
+          </section>
+
+          <section>
+            <h3>History</h3>
+            <ul>
+              <li>1995, Tatu Ylönen, Helsinki University of Technology researcher, implemented SSH-1</li>
+              <li>1999, developers wanted free software ended up creating OpenSSH from the OpenBSD community</li>
+              <li>2006, A revised version of SSH-2 became a standard.</li>
+              <br />
+              <li>References:</li>
+              <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Secure_Shell">Secure Shell (wikipedia)</a></li>
+                <li><a href="https://www.openssh.com/">OpenSSH</a> open source implementation</li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>SSH</h3>
+            <ul>
+              <li>Allows for you to connect and be given a remote shell.</li>
+              <br />
+              <li>OpenSSH is commonly used. Putty is a Windows client.</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+ssh -V
+
+ssh user@host.tld
+
+ssh -i ~/.ssh/id_rsa user@host.tld
+
+ssh host.tld "hostname"
+
+man ssh
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>SSH-KEYGEN</h3>
+            <ul>
+              <li></li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+ssh-keygen -t rsa -b 4096 -C "user@host.tld"
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>SSH-ADD</h3>
+            <ul>
+              <li>You can add keys to your keyring.</li>
+              <br />
+              <li>We saw this when we were being introducted to Ansible.</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+ssh-add key.pem
+
+man ssh-add
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>SSH-COPY-ID</h3>
+            <ul>
+              <li>Used to copy your ssh public key to a remote host and set permissions.</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+ssh-copy-id user@host.tld
+
+ssh-copy-id -i ~/.ssh/id_rsa user@host.tld
+
+cat ~/.ssh/id_rsa.pub | ssh user@host.tld "mkdir -p ~/.ssh &amp;&amp; cat >>  ~/.ssh/authorized_keys"
+
+man ssh-copy-id
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>SCP</h3>
+            <ul>
+              <li>Secure copy of files and directories.</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+scp aFile user@host.tld:aDirectory/aFile
+
+scp user@host.tld:aDirectory/aFile aFile
+
+scp -r user@host.tld:aDirectory ./
+
+man scp
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>RSYNC</h3>
+            <ul>
+              <li>Sync files &amp; permissions between locations.</li>
+              <li>For remote files works over SSH.</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+rsync -a aFile user@host.tld:aDirectory/aFile
+
+man rsync
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Lab Behind the Scenes -->
+        <section>
+          <section>
+            <h3>Lab Behind the Scenes</h3>
+            <ul>
+              <li>Create your SSH</li>
+              <li>SSH-Copy-ID</li>
+              <li>I'll lock down the server</li>
+              <br />
+              <li>Ansible aws-ssh</li>
+              <br />
+              <li>AWS Host</li>
+              <ul>
+                <li>ec2-35-162-111-100.us-west-2.compute.amazonaws.com</li>
+              </ul>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# user = Your first initial followed by last name in all lower case
+ssh-keygen -t rsa -b 4096 -C "user@host.tld"
+
+ssh-copy-id user@ec2-35-162-111-100.us-west-2.compute.amazonaws.com
+            </code></pre>
+
+          </section>
+        </section>
+
+        <!-- Paper/Presentaton -->
+        <section>
+          <section>
+            <h3>Paper/Presentation</h3>
+            <ul>
+              <li>Choose a Service (Nov 7)</li>
+              <li>Rough Draft Due (Nov 28)</li>
+              <li>Paper Due (Dec 5)</li>
+              <li>Presentation (Dec 12)</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Paper/Presentation</h3>
+            <ul>
+              <li>Each topic can be chosen by one student</li>
+              <li>Topics must have server and client components</li>
+              <li>Papers Must Cover:</li>
+              <ul>
+                <li>What the software is</li>
+                <li>How the software is used</li>
+                <li>Who uses the software</li>
+                <li>What are the requiremetns</li>
+                <li>How to install the software</li>
+                <li>How to test the software</li>
+              </ul>
+              <li>Presentation (Dec 12)</li>
+              <ul>
+                <li>Summary 10-15 Minutes</li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Paper/Presentation</h3>
+            <h4>Examples</h4>
+            <p>
+couchdb, memcached, mysql, nginx, OpenLDAP, postgresql, redis, vlc, vsftpd
+            </p>
+            <p>
+Send me your suggestions!
+            </p>
+          </section>
+        </section>
+
+        <!-- Questions Slide -->
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <!-- Extra Credit -->
+        <section>
+          <section>
+            <h3>Extra Credit</h3>
+            <ul>
+              <li>Check Calendar</li>
+              <br />
+              <li>Go to outside industry events.</li>
+              <li>Check in with me or someone I arrange.</li>
+              <li>Write a page:</li>
+              <ul>
+                <li>What did you see?</li>
+                <li>How did you participate?</li>
+                <li>What did you learn?</li>
+              </ul>
+              <li>Send it to me in an e-mail.</li>
+              <li>Worth a lab and you can do two.</li>
+            </ul>
+          </section>
+
+        </section>
+
+        <section>
+            <h3>Rest of the Evening:</h3>
+            <ul>
+                <li>Lab 09</li>
+            </ul>
+            <h3>Next Weeks:</h3>
+            <ul>
+              <li>Week 12: Systems Shell Scripting</li>
+              <li>Week 13: Ansible Automation</li>
+              <li>Week 14: NO CLASS</li>
+              <li>Week 15: DHCP &amp; DNS Service</li>
+              <li>Week 16: Paper &amp; Presentation Working Session</li>
+              <li>Week 17: Presentations</li>
+            </ul>
+        </section>
