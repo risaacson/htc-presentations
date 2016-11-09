@@ -31,7 +31,8 @@ yum install httpd -y \
             <h3>agenda</h3>
             <ul>
               <li>Last Week in Review</li>
-              <li>SOMETHING</li>
+              <li>Choose Paper/Presentation Topics</li>
+              <li>Bash Scripting Software Installs</li>
               <li>Questions?</li>
               <li>Extra Credit</li>
               <li>Rest of the Evening/Next Weeks</li>
@@ -43,11 +44,230 @@ yum install httpd -y \
           <section>
             <h3>Last Week in Review - We did. . .</h3>
             <ul>
-              <li>SOMETHING</li>
+              <li>Introduction to Amazon Web Services</li>
+              <li>SSH Deeper Dive</li>
+              <li>Paper/Preentation</li>
             </ul>
           </section>
         </section>
 
+        <!-- Choose Paper/Presentation Topics -->
+        <section>
+          <section>
+            <h3>Choose Paper/Presentation Topics</h3>
+            <ul>
+              <li>Upcoming Dates</li>
+              <li>Suggested Topics</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Upcoming Dates</h3>
+            <ul>
+              <li>Choose a Service (Tonight)</li>
+              <li>Rough Draft Due (Nov 28)</li>
+              <li>Paper Due (Dec 5)</li>
+              <li>Presentation (Dec 12)</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Suggested Topics</h3>
+            <table>
+              <!-- <thead>
+                <tr>
+                  <th></th>
+                </tr>
+              </thead> -->
+              <tbody>
+                <tr>
+                  <td><a href="https://cassandra.apache.org/">Cassandra</a></td>
+                  <td><a href="https://couchdb.apache.org/">couchdb</a></td>
+                  <td><a href="http://www.haproxy.org/">haproxy</a></td>
+                  <td><a href="https://memcached.org/">memcached</a></td>
+                </tr>
+                <tr>
+                  <td><a href="https://www.mongodb.com/">MongoDB</a></td>
+                  <td><a href="https://www.mysql.com/">mysql</a></td>
+                  <td><a href="https://neo4j.com/">neo4j</a></td>
+                  <td><a href="https://www.nginx.com/">nginx</a></td>
+                </tr>
+                <tr>
+                  <td><a href="https://igniterealtime.org/projects/openfire/index.jsp">Openfire</a></td>
+                  <td><a href="http://www.openldap.org/">OpenLDAP</a></td>
+                  <td><a href="https://www.postgresql.org/">postgresql</a></td>
+                  <td><a href="https://www.rabbitmq.com/">RabbitMQ</a></td>
+                </tr>
+                <tr>
+                  <td><a href="http://redis.io/">redis</a></td>
+                  <td><a href="https://www.rethinkdb.com/">RethinkDB</a></td>
+                  <td><a href="https://www.rethinkdb.com/">Riak</a></td>
+                  <td><a href="http://tigervnc.org/">TigerVNC</a></td>
+                </tr>
+                <tr>
+                  <td><a href="https://security.appspot.com/vsftpd.html">vsftpd</a></td>
+                  <td><a href="">????</a></td>
+                  <td><a href="">????</a></td>
+                  <td><a href="">????</a></td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+Take a moment and look at the suggestions. Pick one and write it on the whiteboard with your name. First come first serve.
+            </p>
+          </section>
+        </section>
+
+        <!-- Bash Scripting Software Installs -->
+        <section>
+          <section>
+            <h3>Bash Scripting Software Installs</h3>
+            <ul>
+              <li>Shell Scripting Refresher</li>
+              <li>Passive/Interactive Installs</li>
+              <li>Scripted Installs</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Shell Scripting Refresher -->
+        <section>
+          <section>
+            <h3>Shell Scripting Refresher</h3>
+            <ul>
+              <li>Basic File Format and Setup</li>
+              <li>Shell Scripts are made of commands with structure helpers</li>
+              <li>Command Composition</li>
+              <li>Input/Output/Error</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Basic File Format and Setup</h3>
+            <ul>
+              <li>Script Template - script.sh</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+
+echo 'hello'
+            </code></pre>
+            <ul>
+              <li>Script Permissions</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+chmod 755 script.sh
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Shell Scripts are made of commands with structure helpers</h3>
+            <ul>
+              <li>if/elif/else/fi</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+
+FILENAME="$1"
+
+if [ -f ${FILENAME} ]; then
+  echo "${FILNAME} is a file"
+elif [ -d ${FILENAME} ]; then
+  echo "${FILENAME} is a directory"
+else
+  echo "${FILENAME} is unknown"
+fi
+            </code></pre>
+            <ul>
+              <li>for</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+for x in 1 2 3; do
+  echo ${x}
+done
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Command Composition</h3>
+            <ul>
+              <li>String commands together to do more complex actions</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+cat /proc/cpuinfo | grep processor | wc -l
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Input/Output/Error</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# In
+cat < /tmp/foo
+
+# Out
+cat > /tmp/foo
+
+# Out and Error
+curl google.com > /tmp/bar 2>&amp;1
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Passive/Interactive Installs -->
+        <section>
+          <section>
+            <h3>Passive/Interactive Installs</h3>
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3></h3>
+            <ul>
+              <li>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h3></h3>
+            <ul>
+              <li>
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Scripted Installs -->
+        <section>
+          <section>
+            <h3>Scripted Installs</h3>
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3></h3>
+            <ul>
+              <li>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h3></h3>
+            <ul>
+              <li>
+              </li>
+            </ul>
+          </section>
+        </section>
 
         <!-- Questions Slide -->
         <section>
@@ -79,15 +299,14 @@ yum install httpd -y \
         <section>
             <h3>Rest of the Evening:</h3>
             <ul>
-                <li>Lab 09</li>
+                <li>Lab 10</li>
             </ul>
             <h3>Next Weeks:</h3>
             <ul>
-              <li>Week 13: TBD</li>
+              <li>Week 13: Ansible Automation</li>
               <li>Week 14: NO CLASS</li>
-              <li>Week 15: TBD</li>
-              <li>Week 16: TBD</li>
+              <li>Week 15: DHCP &amp; DNS Service</li>
+              <li>Week 16: Paper &amp; Presentation Working Session</li>
               <li>Week 17: Presentations</li>
-              <li></li>
             </ul>
         </section>
