@@ -31,8 +31,8 @@ yum install httpd -y \
             <h3>agenda</h3>
             <ul>
               <li>Last Week in Review</li>
-              <li>Bash Scripting Software Installs</li>
               <li>Choose Paper/Presentation Topics</li>
+              <li>Bash Scripting Software Installs</li>
               <li>Questions?</li>
               <li>Extra Credit</li>
               <li>Rest of the Evening/Next Weeks</li>
@@ -47,55 +47,6 @@ yum install httpd -y \
               <li>Introduction to Amazon Web Services</li>
               <li>SSH Deeper Dive</li>
               <li>Paper/Preentation</li>
-            </ul>
-          </section>
-        </section>
-
-        <!-- Bash Scripting Software Installs -->
-        <section>
-          <section>
-            <h3>Bash Scripting Software Installs</h3>
-            <ul>
-              <li>Shell Scripting Refresher</li>
-              <li>Passive/Interactive Installs</li>
-              <li>Scripted Installs</li>
-            </ul>
-          </section>
-        </section>
-
-        <!-- Shell Scripting Refresher -->
-        <section>
-          <section>
-            <h3>Shell Scripting Refresher</h3>
-            <ul>
-              <li>Shell Scripts are made of commands with structure helpers.</li>
-              <li>Basic File Format and Setup</li>
-              <li>Command Composition</li>
-              <li>Input/Output/Error</li>
-            </ul>
-          </section>
-        </section>
-
-        <!-- Passive/Interactive Installs -->
-        <section>
-          <section>
-            <h3>Passive/Interactive Installs</h3>
-            <ul>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
-          </section>
-        </section>
-
-        <!-- Passive/Interactive Installs -->
-        <section>
-          <section>
-            <h3>Passive/Interactive Installs</h3>
-            <ul>
-              <li></li>
-              <li></li>
-              <li></li>
             </ul>
           </section>
         </section>
@@ -164,6 +115,157 @@ yum install httpd -y \
             <p>
 Take a moment and look at the suggestions. Pick one and write it on the whiteboard with your name. First come first serve.
             </p>
+          </section>
+        </section>
+
+        <!-- Bash Scripting Software Installs -->
+        <section>
+          <section>
+            <h3>Bash Scripting Software Installs</h3>
+            <ul>
+              <li>Shell Scripting Refresher</li>
+              <li>Passive/Interactive Installs</li>
+              <li>Scripted Installs</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Shell Scripting Refresher -->
+        <section>
+          <section>
+            <h3>Shell Scripting Refresher</h3>
+            <ul>
+              <li>Basic File Format and Setup</li>
+              <li>Shell Scripts are made of commands with structure helpers</li>
+              <li>Command Composition</li>
+              <li>Input/Output/Error</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Basic File Format and Setup</h3>
+            <ul>
+              <li>Script Template - script.sh</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+
+echo 'hello'
+            </code></pre>
+            <ul>
+              <li>Script Permissions</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+chmod 755 script.sh
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Shell Scripts are made of commands with structure helpers</h3>
+            <ul>
+              <li>if/elif/else/fi</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+#!/bin/bash
+
+FILENAME="$1"
+
+if [ -f ${FILENAME} ]; then
+  echo "${FILNAME} is a file"
+elif [ -d ${FILENAME} ]; then
+  echo "${FILENAME} is a directory"
+else
+  echo "${FILENAME} is unknown"
+fi
+            </code></pre>
+            <ul>
+              <li>for</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+for x in 1 2 3; do
+  echo ${x}
+done
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Command Composition</h3>
+            <ul>
+              <li>String commands together to do more complex actions</li>
+            </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+cat /proc/cpuinfo | grep processor | wc -l
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Input/Output/Error</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+# In
+cat < /tmp/foo
+
+# Out
+cat > /tmp/foo
+
+# Out and Error
+curl google.com > /tmp/bar 2>&amp;1
+            </code></pre>
+          </section>
+        </section>
+
+        <!-- Passive/Interactive Installs -->
+        <section>
+          <section>
+            <h3>Passive/Interactive Installs</h3>
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3></h3>
+            <ul>
+              <li>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h3></h3>
+            <ul>
+              <li>
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Scripted Installs -->
+        <section>
+          <section>
+            <h3>Scripted Installs</h3>
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </section>
+
+          <section>
+            <h3></h3>
+            <ul>
+              <li>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h3></h3>
+            <ul>
+              <li>
+              </li>
+            </ul>
           </section>
         </section>
 
