@@ -4,7 +4,12 @@
             <h3>Week 13 of Linux Admin 2</h3>
             <h4>Commands</h4>
             <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
-foobar
+sudo yum upgrade -y
+cd ~/two-boxes &amp;&amp; git checkout master &amp;&amp; git pull
+
+# You may need
+ssh-agent bash
+ssh-add ~/.ssh/vagrant
             </code></pre>
           </section>
         </section>
@@ -58,10 +63,8 @@ foobar
 
           <section>
             <h3>Paper Requirements</h3>
-          </section>
-
-          <section>
             <h3>Presentation Requiremetns</h3>
+            <h4>Covered in Handout</h4>
           </section>
 
           <section>
@@ -72,7 +75,7 @@ foobar
               <li>Presentation (Dec 12)</li>
             </ul>
           </section>
-        </seciton>
+        </section>
 
         <section>
           <section>
@@ -94,23 +97,88 @@ foobar
               <li>Customize</li>
             </ul>
           </section>
+
+          <section>
+            <h3>Modules of Interest</h3>
+            <table>
+              <!-- <thead>
+                <tr>
+                  <th></th>
+                </tr>
+              </thead> -->
+              <tbody>
+                <tr>
+                  <td>command</td>
+                  <td>shell</td>
+                  <td>copy</td>
+                  <td>file</td>
+                </tr>
+                <tr>
+                  <td>synchronize</td>
+                  <td>unarchive</td>
+                  <td>yum</td>
+                  <td>group</td>
+                </tr>
+                <tr>
+                  <td>make</td>
+                  <td>service</td>
+                  <td>systemd</td>
+                  <td>firewalld</td>
+                </tr>
+                <tr>
+                  <td>user</td>
+                  <td>lineinfile</td>
+                  <td>replace</td>
+                  <td>template</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
         </section>
 
         <section>
           <section>
             <h3>Basic Playbook: Yum Install</h3>
+            <ul>
+              <li>Live Walk-Through</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Basic Playbook: Yum Install - Example</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+vagrant destroy -f &amp;&amp; vagrant up
+cd ~/two-boxes &amp;&amp; git checkout master &amp;&amp; git pull &amp;&amp; git checkout redis-yum
+ansible site.yml
+            </code></pre>
           </section>
         </section>
 
         <section>
           <section>
             <h3>Basic Playbook: Download, Compile &amp; Install</h3>
+            <ul>
+              <li>Live Walk-Through</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Basic Playbook: Download, Compile &amp; Install - Example</h3>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+vagrant destroy -f &amp;&amp; vagrant up
+cd ~/two-boxes &amp;&amp; git checkout master &amp;&amp; git pull &amp;&amp; git checkout redis-compile-install
+ansible site.yml
+            </code></pre>
           </section>
         </section>
 
         <section>
           <section>
             <h3>Playbook: Roles</h3>
+            <ul>
+              <li>Live Walk-Through if time.</li>
+              <li>Solution posted during class</li>
+            </ul>
           </section>
         </section>
 
