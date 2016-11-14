@@ -149,7 +149,7 @@ ssh-add ~/.ssh/vagrant
             <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
 vagrant destroy -f &amp;&amp; vagrant up
 cd ~/two-boxes &amp;&amp; git checkout master &amp;&amp; git pull &amp;&amp; git checkout redis-yum
-ansible site.yml
+ansible-playbook site.yml
             </code></pre>
           </section>
         </section>
@@ -167,7 +167,7 @@ ansible site.yml
             <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
 vagrant destroy -f &amp;&amp; vagrant up
 cd ~/two-boxes &amp;&amp; git checkout master &amp;&amp; git pull &amp;&amp; git checkout redis-compile-install
-ansible site.yml
+ansible-playbook site.yml
             </code></pre>
           </section>
         </section>
@@ -214,6 +214,9 @@ ansible site.yml
             <ul>
                 <li>Lab 11</li>
             </ul>
+            <pre><code class="bash" data-trim contenteditable style="font-size: 18px;">
+cd ~/two-boxes &amp;&amp; git checkout master &amp;&amp; git pull &amp;&amp; git checkout template
+            </code></pre>
             <h3>Next Weeks:</h3>
             <ul>
               <li>Week 14: NO CLASS</li>
